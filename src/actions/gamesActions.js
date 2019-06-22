@@ -27,7 +27,7 @@ function handleErrors(response) {
 export function fetchGames() {
   return (dispatch) => {
     dispatch(fetchGamesBegin());
-    return fetch(`${process.env.REACT_APP_SERVER_ADDRESS || 'http://127.0.0.1:4044'}/games`)
+    return fetch(`${process.env.REACT_APP_SERVER_ADDRESS}/games`)
       .then(handleErrors)
       .then(res => res.json())
       .then((json) => {

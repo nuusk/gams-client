@@ -38,15 +38,15 @@ class GameList extends Component {
       && (
         <div>
           {games.map(game => (
-            <div
+            <h1
               // eslint-disable-next-line no-underscore-dangle
               key={game._id}
-              // eslint-disable-next-line no-underscore-dangle
-              gameID={game._id}
-              handleClick={onSelectGame}
+            // eslint-disable-next-line no-underscore-dangle
+            // gameID={game._id}
+            // handleClick={onSelectGame}
             >
               {game.title}
-            </div>
+            </h1>
           ))}
         </div>
       )

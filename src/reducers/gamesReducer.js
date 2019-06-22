@@ -1,5 +1,6 @@
 import {
-  SELECT_GAME, FETCH_GAMES_BEGIN,
+  SELECT_GAME,
+  FETCH_GAMES_BEGIN,
   FETCH_GAMES_SUCCESS,
   FETCH_GAMES_FAILURE,
 } from '../actions/gamesActions';
