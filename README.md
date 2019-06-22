@@ -1,6 +1,6 @@
 # G A M S
 
-[![Build Status](https://travis-ci.com/pietersweter/gams-client.svg?branch=master)](https://travis-ci.com/pietersweter/gams-server)
+[![Build Status](https://travis-ci.com/pietersweter/gams-server.svg?branch=master)](https://travis-ci.com/pietersweter/gams-server)
 
 Create your profile and play games with your friends.
 
