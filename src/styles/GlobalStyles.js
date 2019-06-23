@@ -3,12 +3,13 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Megrim&display=swap');
 
   ${styledNormalize}
 
   body {
     color: ${({ theme }) => theme.color.text.primary};
-    font-family: ${({ theme }) => theme.font.family};
+    font-family: ${({ theme }) => theme.font.family.base};
     font-weight: ${({ theme }) => theme.font.weight.base};
   }
 

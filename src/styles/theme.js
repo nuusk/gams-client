@@ -30,7 +30,10 @@ const theme = {
     },
   },
   font: {
-    family: 'Rubik, sans-serif',
+    family: {
+      base: 'Rubik, sans-serif',
+      special: 'Megrim, sans-serif',
+    },
     size: {
       base: '16px',
       heading: {
