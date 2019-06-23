@@ -11,6 +11,7 @@ const theme = {
     },
     background: {
       base: '#191716',
+      far: '#050505',
     },
     elements: {
       line: '#EDDD00',
@@ -61,13 +62,13 @@ const theme = {
     border: '2px',
     gap: '16px',
     padding: {
-      small: '2px',
-      normal: '6px',
-      big: '10px',
+      small: '4px',
+      normal: '10px',
+      big: '30px',
     },
     screen: {
       wide: '100vw',
-      narrow: '1000px',
+      narrow: '1200px',
     },
   },
   visuals: {

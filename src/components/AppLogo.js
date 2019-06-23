@@ -6,8 +6,8 @@ const Wrapper = styled.h1`
   text-align: center;
 `;
 
-const AppHeader = () => (
+const AppLogo = () => (
   <Wrapper>GamS</Wrapper>
 );
 
-export default AppHeader;
+export default AppLogo;
