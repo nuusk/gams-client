@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.color.background.far};
   height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   height: 100%;
+  width: 100%;
 
   ${({ columned }) => columned
     && css`

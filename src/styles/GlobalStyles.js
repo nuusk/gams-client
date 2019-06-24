@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: ${({ theme }) => theme.font.weight.base};
   }
 
+  header, main, footer {
+    width: 100%;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     color: ${({ theme }) => theme.color.text.primary};
     line-height: ${({ theme }) => theme.font.lineHeight.heading};

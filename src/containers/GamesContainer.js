@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectGame, fetchGames } from '../actions/gamesActions';
+import GameTile from '../components/GameTile';
 
 class GameList extends Component {
   componentDidMount() {
@@ -38,15 +39,16 @@ class GameList extends Component {
       && (
         <div>
           {games.map(game => (
-            <h1
+            <GameTile
               // eslint-disable-next-line no-underscore-dangle
               key={game._id}
-            // eslint-disable-next-line no-underscore-dangle
-            // gameID={game._id}
-            // handleClick={onSelectGame}
-            >
-              {game.title}
-            </h1>
+              // eslint-disable-next-line no-underscore-dangle
+              gameID={game._id}
+              // handleClick={onSelectGame}
+              title={game.title}
+              imageURL={game.imageURL}
+              gameURL={game.gameURL}
+            />
           ))}
         </div>
       )

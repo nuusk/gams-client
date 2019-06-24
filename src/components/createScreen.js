@@ -15,6 +15,7 @@ const Wrapper = styled.main`
 
 const Screen = styled.div`
   height: 100%;
+  width: 100%;
   margin: 0 ${({ theme }) => theme.size.gap};
   // border: ${({ theme }) => theme.size.border} solid ${({ theme }) => theme.color.elements.line};
   border-radius: ${({ theme }) => theme.size.borderRadius}
