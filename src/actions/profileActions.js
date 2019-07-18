@@ -1,6 +1,7 @@
 export const FETCH_PROFILE_BEGIN = 'FETCH_PROFILE_BEGIN';
 export const FETCH_PROFILE_SUCCESS = 'FETCH_PROFILE_SUCCESS';
 export const FETCH_PROFILE_FAILURE = 'FETCH_PROFILE_FAILURE';
+export const PROFILE_REGISTER = 'PROFILE_REGISTER';
 
 export const fetchProfileBegin = () => ({
   type: FETCH_PROFILE_BEGIN,
@@ -34,5 +35,12 @@ export function fetchProfile() {
         return json;
       })
       .catch(error => dispatch(fetchProfileFailure(error)));
+  };
+}
+
+export function profileRegister(username, email) {
+  return {
+    type: PROFILE_REGISTER,
+    payload: { username, email },
   };
 }
