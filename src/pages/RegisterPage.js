@@ -5,6 +5,7 @@ import AppLogo from '../components/AppLogo';
 import Form from '../components/Form';
 import { profileRegister } from '../actions/profileActions';
 import mapEventToState from '../helpers/mapEventToState';
+import { request } from '../helpers/request';
 
 // import createScreen from '../components/createScreen';
 
@@ -31,7 +32,13 @@ class RegisterPage extends Component {
     const {
       name, username, email, password,
     } = this.state;
-    console.log(name, username, email, password);
+
+    request('/profiles', {
+      method: 'POST',
+      body: {
+        name, username, email, password,
+      },
+    });
   }
 
   render() {
