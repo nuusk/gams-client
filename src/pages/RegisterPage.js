@@ -11,8 +11,7 @@ import { request } from '../helpers/request';
 import {
   setCookie, TOKEN_COOKIE, USERNAME_COOKIE, EMAIL_COOKIE,
 } from '../helpers/cookies';
-
-// import createScreen from '../components/createScreen';
+import createScreen from '../components/createScreen';
 
 // const Screen = createScreen(Form, AppLogo, AppLogo);
 
@@ -52,7 +51,6 @@ class RegisterPage extends Component {
       setCookie(TOKEN_COOKIE, registerResponse.token);
       setCookie(USERNAME_COOKIE, registerResponse.username);
       setCookie(EMAIL_COOKIE, registerResponse.email);
-      console.log('zapisane');
     }
   }
 
@@ -61,18 +59,24 @@ class RegisterPage extends Component {
       name, username, email, password,
     } = this.state;
 
+    const RegisterForm = () => (
+      <Form onSubmit={this.handleSubmit}>
+        <input name="name" value={name} placeholder="name" onChange={this.handleChange} />
+        <input name="username" value={username} placeholder="username" onChange={this.handleChange} />
+        <input name="email" value={email} placeholder="email" onChange={this.handleChange} />
+        <input name="password" value={password} type="password" placeholder="password" onChange={this.handleChange} />
+        <button type="submit">register</button>
+      </Form>
+    );
+
+    const Screen = createScreen(RegisterForm, null, null);
+
     return (
       <Layout columned narrow>
         <header>
           <AppLogo />
         </header>
-        <Form onSubmit={this.handleSubmit}>
-          <input name="name" value={name} placeholder="name" onChange={this.handleChange} />
-          <input name="username" value={username} placeholder="username" onChange={this.handleChange} />
-          <input name="email" value={email} placeholder="email" onChange={this.handleChange} />
-          <input name="password" value={password} type="password" placeholder="password" onChange={this.handleChange} />
-          <button type="submit">register</button>
-        </Form>
+        <Screen />
         <footer>
           2019
         </footer>

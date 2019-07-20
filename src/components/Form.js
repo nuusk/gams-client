@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 const FormWrapper = styled.form`
   background: ${imageURL => `url(${imageURL.imageURL}) no-repeat center`};
   background-size: cover;
-  height: 260px;
-  width: 260px;
   border: 2px solid white;
   padding: 20px;
   margin: 10px;

@@ -24,13 +24,22 @@ const Screen = styled.div`
   background: ${({ theme }) => theme.color.background.base}
 `;
 
+const Sidebar = styled.div`
+  width: 200px;
+  height: 100%;
+`;
+
 const createScreen = (Display, LeftColumn, RightColumn) => () => (
   <Wrapper>
-    <LeftColumn />
+    <Sidebar>
+      {LeftColumn && <LeftColumn />}
+    </Sidebar>
     <Screen>
       <Display />
     </Screen>
-    <RightColumn />
+    <Sidebar>
+      {RightColumn && <RightColumn />}
+    </Sidebar>
   </Wrapper>
 );
 
