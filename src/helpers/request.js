@@ -6,12 +6,7 @@ const isJson = (data) => {
 const handleResponse = (response) => {
   if (isJson(response)) {
     const asJson = response.json();
-    if (response.ok) {
-      return asJson;
-    }
-    return asJson.then((body) => {
-      throw new Error(body.message || 'Action failed');
-    });
+    return asJson;
   }
 
   return undefined;
@@ -30,9 +25,8 @@ export const buildRequest = (endpoint, { method, body, headers }) => new Request
   },
 );
 
-export const request = (...args) => {
-  fetch(buildRequest(...args)).then(handleResponse);
-};
+export const request = (...args) => fetch(buildRequest(...args))
+  .then(handleResponse).catch(err => err);
 
 export const jwtRequest = (...args) => {
   const headers = args.headers || [];

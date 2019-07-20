@@ -38,7 +38,7 @@ export function fetchProfile() {
   };
 }
 
-export function profileRegister(username, email) {
+export function profileLogin(username, email) {
   return {
     type: PROFILE_REGISTER,
     payload: { username, email },

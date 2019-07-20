@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Layout from '../components/Layout';
 import AppLogo from '../components/AppLogo';
 import Form from '../components/Form';
-import { profileRegister } from '../actions/profileActions';
+import { profileLogin } from '../actions/profileActions';
 import mapEventToState from '../helpers/mapEventToState';
 import { request } from '../helpers/request';
+import {
+  setCookie, TOKEN_COOKIE, USERNAME_COOKIE, EMAIL_COOKIE,
+} from '../helpers/cookies';
 
 // import createScreen from '../components/createScreen';
 
@@ -26,19 +31,29 @@ class RegisterPage extends Component {
     this.handleChange = mapEventToState.bind(this);
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
 
     const {
       name, username, email, password,
     } = this.state;
 
-    request('/profiles', {
+    const { onRegister } = this.props;
+
+    const registerResponse = await request('/profiles', {
       method: 'POST',
       body: {
         name, username, email, password,
       },
     });
+
+    if (registerResponse.token) {
+      onRegister(registerResponse.username, registerResponse.email);
+      setCookie(TOKEN_COOKIE, registerResponse.token);
+      setCookie(USERNAME_COOKIE, registerResponse.username);
+      setCookie(EMAIL_COOKIE, registerResponse.email);
+      console.log('zapisane');
+    }
   }
 
   render() {
@@ -67,7 +82,11 @@ class RegisterPage extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onRegister: (username, email) => dispatch(profileRegister(username, email)),
+  onRegister: (username, email) => dispatch(profileLogin(username, email)),
 });
+
+RegisterPage.propTypes = {
+  onRegister: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(RegisterPage);
