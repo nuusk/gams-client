@@ -9,11 +9,6 @@ const FormWrapper = styled.form`
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
-
-  input {
-    width: 100%;
-    box-sizing: border-box;
-  }
 `;
 
 const Form = ({

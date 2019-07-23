@@ -74,8 +74,8 @@ const theme = {
     },
     transition: {
       quick: '0.2s cubic-bezier(.57,.17,.32,.92)',
-      base: '0.4s cubic-bezier(.57,.17,.32,.92)',
-      slow: '1s cubic-bezier(.57,.17,.32,.92)',
+      base: '0.4s cubic-bezier(.49,.98,.87,.99)',
+      slow: '1s cubic-bezier(.49,.98,.87,.99)',
     },
     perspective: {
       far: '2000px',
