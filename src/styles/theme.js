@@ -20,6 +20,7 @@ const theme = {
         base: '#FDFFFC',
         active: '#EDDD00',
       },
+      labe: '#E9EAE8',
     },
     palette: { // for reference
       platinum: '#E9EAE8',
@@ -42,7 +43,7 @@ const theme = {
         secondary: '2rem',
       },
       label: {
-        primary: '1.125rem',
+        primary: '1.25rem',
         secondary: '0.875rem',
       },
     },
@@ -61,11 +62,6 @@ const theme = {
     line: '4px',
     border: '2px',
     gap: '16px',
-    padding: {
-      small: '4px',
-      normal: '10px',
-      big: '30px',
-    },
     screen: {
       wide: '100vw',
       narrow: '1200px',

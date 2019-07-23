@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const FormWrapper = styled.form`
-  background: ${imageURL => `url(${imageURL.imageURL}) no-repeat center`};
-  background-size: cover;
-  border: 2px solid white;
-  padding: 20px;
-  margin: 10px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
 
   input {
     width: 100%;

@@ -11,7 +11,8 @@ import { request } from '../helpers/request';
 import {
   setCookie, TOKEN_COOKIE, USERNAME_COOKIE, EMAIL_COOKIE,
 } from '../helpers/cookies';
-import createScreen from '../components/createScreen';
+import Screen from '../components/Screen';
+import TextInput from '../components/TextInput';
 
 // const Screen = createScreen(Form, AppLogo, AppLogo);
 
@@ -59,24 +60,24 @@ class RegisterPage extends Component {
       name, username, email, password,
     } = this.state;
 
-    const RegisterForm = () => (
-      <Form onSubmit={this.handleSubmit}>
-        <input name="name" value={name} placeholder="name" onChange={this.handleChange} />
-        <input name="username" value={username} placeholder="username" onChange={this.handleChange} />
-        <input name="email" value={email} placeholder="email" onChange={this.handleChange} />
-        <input name="password" value={password} type="password" placeholder="password" onChange={this.handleChange} />
-        <button type="submit">register</button>
-      </Form>
-    );
-
-    const Screen = createScreen(RegisterForm, null, null);
-
     return (
       <Layout columned narrow>
         <header>
           <AppLogo />
         </header>
-        <Screen />
+        <main>
+          <Screen>
+            <div />
+            <Form onSubmit={this.handleSubmit}>
+              <TextInput type="text" name="name" value={name} placeholder="name" onChange={this.handleChange} />
+              <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} />
+              <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} />
+              <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} />
+              <button type="submit">register</button>
+            </Form>
+            <div />
+          </Screen>
+        </main>
         <footer>
           2019
         </footer>

@@ -3,9 +3,7 @@ import GamesContainer from '../containers/GamesContainer';
 import PlayerContainer from '../containers/PlayerContainer';
 import Layout from '../components/Layout';
 import AppLogo from '../components/AppLogo';
-import createScreen from '../components/createScreen';
-
-const Screen = createScreen(GamesContainer, PlayerContainer, AppLogo);
+import Screen from '../components/Screen';
 
 export default function GameSelectionPage() {
   return (
@@ -13,7 +11,11 @@ export default function GameSelectionPage() {
       <header>
         <AppLogo />
       </header>
-      <Screen />
+      <Screen>
+        <PlayerContainer />
+        <GamesContainer />
+        <AppLogo />
+      </Screen>
       <footer>
         2019
       </footer>
