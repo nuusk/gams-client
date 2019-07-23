@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import CustomPropTypes from '../helpers/CustomPropTypes';
 import Layout from '../components/Layout';
 import AppLogo from '../components/AppLogo';
 import Form from '../components/Form';
@@ -38,7 +39,7 @@ class RegisterPage extends Component {
       name, username, email, password,
     } = this.state;
 
-    const { onRegister } = this.props;
+    const { onRegister, history } = this.props;
 
     const registerResponse = await request('/profiles', {
       method: 'POST',
@@ -52,6 +53,7 @@ class RegisterPage extends Component {
       setCookie(TOKEN_COOKIE, registerResponse.token);
       setCookie(USERNAME_COOKIE, registerResponse.username);
       setCookie(EMAIL_COOKIE, registerResponse.email);
+      history.push('/');
     }
   }
 
@@ -92,6 +94,7 @@ const mapDispatchToProps = dispatch => ({
 
 RegisterPage.propTypes = {
   onRegister: PropTypes.func.isRequired,
+  history: CustomPropTypes.history.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(RegisterPage);
