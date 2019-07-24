@@ -27,6 +27,8 @@ class RegisterPage extends Component {
       username: '',
       email: '',
       password: '',
+      awaiting: false,
+      error: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,6 +43,10 @@ class RegisterPage extends Component {
     } = this.state;
 
     const { onRegister, history } = this.props;
+
+    this.setState({
+      awaiting: true,
+    });
 
     const registerResponse = await request('/profiles', {
       method: 'POST',
@@ -60,7 +66,7 @@ class RegisterPage extends Component {
 
   render() {
     const {
-      name, username, email, password,
+      name, username, email, password, awaiting, error,
     } = this.state;
 
     return (
@@ -76,7 +82,7 @@ class RegisterPage extends Component {
               <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} />
               <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} />
               <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} />
-              <Button type="submit">register</Button>
+              <Button type="submit" awaiting={awaiting} error={error} onSubmit={this.handleSubmit}>register</Button>
             </Form>
             <div />
           </Screen>

@@ -36,14 +36,6 @@ const Wrapper = styled.button`
     }
   }
 
-  &:active {
-    transform: rotate3d(1, 0, 0, -180deg);
-    transition:
-      transform ${({ theme }) => theme.visuals.transition.base},
-      opacity ${({ theme }) => theme.visuals.transition.slow};
-    opacity: 0;
-  }
-
   ${({ primary }) => primary
     && css`
     background-color: ${({ theme }) => theme.color.accent.primary};
@@ -57,6 +49,37 @@ const Wrapper = styled.button`
       color: ${({ theme }) => theme.color.accent.primary};
     }
   `}
+
+  ${({ awaiting }) => awaiting
+    && css`
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      transition: ${({ theme }) => theme.visuals.transition.quick};
+      transform: translateY(-50%) skew(-10deg, 10deg);
+      background-color: ${({ theme }) => theme.color.accent.secondary};
+      top: 50%;
+      width: 20px;
+      height: 200%;
+      left: 0;
+      animation: awaiting ${({ theme }) => theme.visuals.transition.slow} infinite;
+    }
+  `}
+
+  ${({ error }) => error
+    && css`
+    background-color: ${({ theme }) => theme.color.accent.error};
+  `}
+
+  @keyframes awaiting {
+    0% {
+      left: -30px;
+    }
+    100% {
+      left: 100%
+    }
+  }
 `;
 
 const ButtonText = styled.div`
@@ -65,16 +88,19 @@ const ButtonText = styled.div`
   transition: ${({ theme }) => theme.visuals.transition.quick}
 `;
 
-const Button = ({ children, ...rest }) => (
-  <Wrapper {...rest}>
+const Button = ({ children, awaiting, ...rest }) => (
+  <Wrapper disabled={awaiting} awaiting={awaiting} {...rest}>
     <ButtonText>
-      {children}
+      {awaiting ? 'awaiting' : children}
     </ButtonText>
   </Wrapper>
 );
 
 Button.propTypes = {
   primary: PropTypes.bool,
+  awaiting: PropTypes.bool,
+  error: PropTypes.bool,
+  disabled: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
@@ -83,6 +109,9 @@ Button.propTypes = {
 
 Button.defaultProps = {
   primary: true,
+  awaiting: false,
+  error: false,
+  disabled: false,
   children: [],
 };
 
