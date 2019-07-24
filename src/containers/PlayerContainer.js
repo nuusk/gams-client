@@ -12,7 +12,6 @@ class PlayerContainer extends Component {
 
   renderAvatar() {
     const { error, loading, profile } = this.props;
-    console.log(profile);
 
     if (error) {
       return (
