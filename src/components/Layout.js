@@ -17,16 +17,16 @@ const Content = styled.div`
 
   ${({ columned }) => columned
     && css`
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    `}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  `}
 
-  ${({ narrow }) => narrow
+${({ narrow }) => narrow
     && css`
-      max-width: ${({ theme }) => theme.size.screen.narrow}
-    `}
+    max-width: ${({ theme }) => theme.size.screen.narrow}
+  `}
 `;
 
 const Layout = ({ children, ...rest }) => (

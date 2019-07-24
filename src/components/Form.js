@@ -6,6 +6,7 @@ const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;

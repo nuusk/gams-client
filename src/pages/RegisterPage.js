@@ -13,6 +13,7 @@ import {
   setCookie, TOKEN_COOKIE, USERNAME_COOKIE, EMAIL_COOKIE,
 } from '../helpers/cookies';
 import Screen from '../components/Screen';
+import Button from '../components/Button';
 import TextInput from '../components/TextInput';
 
 // const Screen = createScreen(Form, AppLogo, AppLogo);
@@ -75,7 +76,7 @@ class RegisterPage extends Component {
               <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} />
               <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} />
               <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} />
-              <button type="submit">register</button>
+              <Button type="submit">register</Button>
             </Form>
             <div />
           </Screen>

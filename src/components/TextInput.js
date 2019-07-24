@@ -8,6 +8,7 @@ const InputGroup = styled.div`
   background-color: ${({ theme }) => theme.color.accent.secondary};
   margin: 1rem 0;
   padding: 0 1rem;
+  width: 100%;
 `;
 
 const InputLabel = styled.label`
@@ -22,7 +23,7 @@ const InputLabel = styled.label`
     ${({ theme }) => theme.visuals.transition.quick},
     top ${({ theme }) => theme.visuals.transition.base};
 
-  ${({ isActive, theme }) => isActive && css`
+  ${({ isActive }) => isActive && css`
     top: -1rem;
     opacity: 1;
   `}

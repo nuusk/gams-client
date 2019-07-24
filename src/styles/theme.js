@@ -78,10 +78,12 @@ const theme = {
       slow: '1s cubic-bezier(.49,.98,.87,.99)',
     },
     perspective: {
-      far: '2000px',
+      far: '1000px',
     },
     zindex: {
-      front: 100,
+      front: 3000,
+      center: 2000,
+      back: 1000,
     },
   },
 };
