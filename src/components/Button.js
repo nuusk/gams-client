@@ -67,6 +67,11 @@ const Wrapper = styled.button`
     }
   `}
 
+  ${({ disabled }) => disabled
+    && css`
+    pointer-events: none;
+  `}
+
   ${({ error }) => error
     && css`
     background-color: ${({ theme }) => theme.color.accent.error};
@@ -89,7 +94,7 @@ const ButtonText = styled.div`
 `;
 
 const Button = ({ children, awaiting, ...rest }) => (
-  <Wrapper disabled={awaiting} awaiting={awaiting} {...rest}>
+  <Wrapper awaiting={awaiting} {...rest} disabled={awaiting}>
     <ButtonText>
       {awaiting ? 'awaiting' : children}
     </ButtonText>
