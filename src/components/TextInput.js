@@ -51,25 +51,9 @@ class TextInput extends Component {
     super(props);
 
     this.uniqueId = generateUniqueId();
-
-    this.state = {
-      isFocused: false,
-    };
-
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-  }
-
-  handleBlur() {
-    this.setState({ isFocused: false });
-  }
-
-  handleFocus() {
-    this.setState({ isFocused: true });
   }
 
   render() {
-    const { isFocused } = this.state;
     const {
       value, placeholder, type, name, onChange, required,
     } = this.props;
@@ -79,7 +63,7 @@ class TextInput extends Component {
       <InputGroup>
         <InputLabel
           htmlFor={this.id}
-          isActive={isFocused || isFilled}
+          isActive={isFilled}
         >
           {placeholder}
         </InputLabel>
@@ -90,8 +74,6 @@ class TextInput extends Component {
           placeholder={placeholder}
           aria-label={name}
           id={this.uniqueId}
-          // onFocus={this.handleFocus}
-          // onBlur={this.handleBlur}
           onChange={onChange}
           isFilled={isFilled}
           required={required}

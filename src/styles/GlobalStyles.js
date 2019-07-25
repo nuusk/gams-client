@@ -65,6 +65,16 @@ const GlobalStyle = createGlobalStyle`
     height: auto;
     max-width: 100%;
   }
+
+  // reset autofill styles
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active  {
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+    font-family: ${({ theme }) => theme.font.family.base};
+    font-weight: ${({ theme }) => theme.font.weight.base};
+  }
 `;
 
 export default GlobalStyle;
