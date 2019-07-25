@@ -21,6 +21,23 @@ const InputGroup = styled.div`
     z-index: ${({ theme }) => theme.visuals.zindex.middle}
   }
 
+  &::before {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 10px
+    height: 20px;
+    right: 0;
+    top: 40%;
+    transform: translateY(-50%) rotate(45deg);
+    border: 3px solid;
+    border-left: none;
+    border-top: none;
+    transition: ${({ theme }) => theme.visuals.transition.base};
+    z-index: ${({ theme }) => theme.visuals.zindex.front};
+    opacity: 0;
+  }
+
   ${({ primary }) => primary && css`
     color: ${({ theme }) => theme.color.accent.primary};
     background-color: ${({ theme }) => theme.color.accent.secondary};
@@ -32,6 +49,12 @@ const InputGroup = styled.div`
     &::after {
       background-color: ${({ theme }) => theme.color.accent.primary};
       width: 100%;
+    }
+
+    &::before {
+      opacity: 1;
+      border-color: ${({ theme }) => theme.color.accent.secondary};
+      right: 20px;
     }
   `}
 `;
