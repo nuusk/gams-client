@@ -5,10 +5,35 @@ import generateUniqueId from '../helpers/generateUniqueId';
 
 const InputGroup = styled.div`
   position: relative;
-  background-color: ${({ theme }) => theme.color.accent.secondary};
   margin: 1rem 0;
   padding: 0 1rem;
   width: 100%;
+  
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 100%; 
+    top: 0;
+    right: 0;
+    transition: ${({ theme }) => theme.visuals.transition.base};
+    z-index: ${({ theme }) => theme.visuals.zindex.middle}
+  }
+
+  ${({ primary }) => primary && css`
+    color: ${({ theme }) => theme.color.accent.primary};
+    background-color: ${({ theme }) => theme.color.accent.secondary};
+  `}
+
+  ${({ inverted }) => inverted && css`
+    color: ${({ theme }) => theme.color.accent.secondary};
+
+    &::after {
+      background-color: ${({ theme }) => theme.color.accent.primary};
+      width: 100%;
+    }
+  `}
 `;
 
 const InputLabel = styled.label`
@@ -31,13 +56,16 @@ const InputLabel = styled.label`
 
 const InputElement = styled.input`
   border: none;
-  color: ${({ theme }) => theme.color.accent.primary};
   width: 100%;
   height: 2rem;
-  background-color: initial;
+  background-color: transparent;
+  color: inherit;
+  position: relative;
+  z-index: ${({ theme }) => theme.visuals.zindex.front};
+  transition: color ${({ theme }) => theme.visuals.transition.base};
 
   &::placeholder {
-    color: ${({ theme }) => theme.color.text.secondary};
+    color: ${({ theme }) => theme.color.text.secondary} !important;
   }
 
   &:focus {
@@ -51,19 +79,38 @@ class TextInput extends Component {
     super(props);
 
     this.uniqueId = generateUniqueId();
+
+    this.state = {
+      isOk: false,
+    };
+
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+  }
+
+  handleBlur(e) {
+    // validate if input is ok
+    if (e.target.value !== '') {
+      this.setState({ isOk: true });
+    }
+  }
+
+  handleFocus() {
+    this.setState({ isOk: false });
   }
 
   render() {
+    const { isFocused, isOk } = this.state;
     const {
-      value, placeholder, type, name, onChange, required,
+      value, placeholder, type, name, onChange, required, primary,
     } = this.props;
     const isFilled = value !== '';
 
     return (
-      <InputGroup>
+      <InputGroup inverted={isOk} primary={primary}>
         <InputLabel
           htmlFor={this.id}
-          isActive={isFilled}
+          isActive={isFocused || isFilled}
         >
           {placeholder}
         </InputLabel>
@@ -74,7 +121,14 @@ class TextInput extends Component {
           placeholder={placeholder}
           aria-label={name}
           id={this.uniqueId}
-          onChange={onChange}
+          onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
+          onChange={(e) => {
+            this.setState({
+              isOk: false,
+            });
+            onChange(e);
+          }}
           isFilled={isFilled}
           required={required}
         />
@@ -85,6 +139,7 @@ class TextInput extends Component {
 
 TextInput.defaultProps = {
   required: false,
+  primary: true,
 };
 
 TextInput.propTypes = {
@@ -94,6 +149,7 @@ TextInput.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
+  primary: PropTypes.bool,
 };
 
 export default TextInput;

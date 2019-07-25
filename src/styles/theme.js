@@ -82,7 +82,7 @@ const theme = {
     },
     zindex: {
       front: 3000,
-      center: 2000,
+      middle: 2000,
       back: 1000,
     },
   },
