@@ -9,7 +9,6 @@ import { profileLogin } from '../actions/profileActions';
 import mapEventToState from '../helpers/mapEventToState';
 import invalidEmail from '../helpers/invalidEmail';
 import invalidName from '../helpers/invalidName';
-// import invalidRepeat from '../helpers/invalidRepeat';
 import { request } from '../helpers/request';
 import {
   setCookie, TOKEN_COOKIE, USERNAME_COOKIE, EMAIL_COOKIE,
@@ -23,11 +22,9 @@ class RegisterPage extends Component {
     super();
 
     this.state = {
-      name: '',
       username: '',
       email: '',
       password: '',
-      repeatPassword: '',
       awaiting: false,
       error: false,
     };
@@ -42,7 +39,7 @@ class RegisterPage extends Component {
     e.preventDefault();
 
     const {
-      name, username, email, password,
+      username, email, password,
     } = this.state;
 
     const { onRegister, history } = this.props;
@@ -54,7 +51,7 @@ class RegisterPage extends Component {
     const registerResponse = await request('/profiles', {
       method: 'POST',
       body: {
-        name, username, email, password,
+        username, email, password,
       },
     });
 
@@ -69,7 +66,7 @@ class RegisterPage extends Component {
 
   render() {
     const {
-      name, username, email, password, repeatPassword, awaiting, error,
+      username, email, password, awaiting, error,
     } = this.state;
 
     return (

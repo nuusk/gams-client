@@ -169,7 +169,7 @@ class TextInput extends Component {
   render() {
     const { isFocused, isOk, invalid } = this.state;
     const {
-      value, placeholder, type, name, onChange, required, primary,
+      value, placeholder, type, name, onChange, required, primary, dataRepeat,
     } = this.props;
     const isFilled = value !== '';
 
@@ -211,6 +211,7 @@ TextInput.defaultProps = {
   required: false,
   primary: true,
   onInvalid: () => false,
+  dataRepeat: '',
 };
 
 TextInput.propTypes = {
@@ -222,6 +223,7 @@ TextInput.propTypes = {
   required: PropTypes.bool,
   primary: PropTypes.bool,
   onInvalid: PropTypes.func,
+  dataRepeat: PropTypes.string,
 };
 
 export default TextInput;
