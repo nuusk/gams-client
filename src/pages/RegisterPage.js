@@ -57,6 +57,10 @@ class RegisterPage extends Component {
       },
     });
 
+    this.setState({
+      awaiting: false,
+    });
+
     if (registerResponse.token) {
       onRegister(registerResponse.username, registerResponse.email);
       setCookie(TOKEN_COOKIE, registerResponse.token);
