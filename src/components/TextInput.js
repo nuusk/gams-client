@@ -60,7 +60,7 @@ const InputGroup = styled.div`
 
   ${({ invalid }) => invalid && css`
     color: ${({ theme }) => theme.color.text.primary};
-    animation: error .12s linear, error .25s linear .12s;
+    animation: error .18s linear, error .18s linear .18s;
 
     &::after {
       background-color: ${({ theme }) => theme.color.accent.error};
@@ -75,19 +75,19 @@ const InputGroup = styled.div`
 
   @keyframes error {
     0% {
-      transform: translateX(0);
+      transform: translateX(0) skew(0);
     }
     25% {
-      transform: translateX(-10px);
+      transform: translateX(-10px) skew(-5deg);
     }
     50% {
-      transform: translateX(0);
+      transform: translateX(0) skew(5deg);
     }
     75% {
-      transform: translateX(10px);
+      transform: translateX(10px) skew(0);
     }
     100% {
-      transform: translateX(0);
+      transform: translateX(0) skew(-5deg);
     }
   }
 `;
@@ -151,9 +151,10 @@ class TextInput extends Component {
   handleBlur(e) {
     // validate if input is ok
     const { value } = e.target;
-    const { onValidate } = this.props;
+    const { onInvalid } = this.props;
     if (value !== '') {
-      if (onValidate(e)) {
+      const error = onInvalid(e);
+      if (!error) {
         this.setState({ isOk: true });
       } else {
         this.setState({ invalid: true });
@@ -209,7 +210,7 @@ class TextInput extends Component {
 TextInput.defaultProps = {
   required: false,
   primary: true,
-  onValidate: () => true,
+  onInvalid: () => false,
 };
 
 TextInput.propTypes = {
@@ -220,7 +221,7 @@ TextInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   primary: PropTypes.bool,
-  onValidate: PropTypes.func,
+  onInvalid: PropTypes.func,
 };
 
 export default TextInput;

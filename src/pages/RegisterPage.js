@@ -7,7 +7,9 @@ import AppLogo from '../components/AppLogo';
 import Form from '../components/Form';
 import { profileLogin } from '../actions/profileActions';
 import mapEventToState from '../helpers/mapEventToState';
-import validateEmail from '../helpers/validateEmail';
+import invalidEmail from '../helpers/invalidEmail';
+import invalidName from '../helpers/invalidName';
+// import invalidRepeat from '../helpers/invalidRepeat';
 import { request } from '../helpers/request';
 import {
   setCookie, TOKEN_COOKIE, USERNAME_COOKIE, EMAIL_COOKIE,
@@ -25,13 +27,15 @@ class RegisterPage extends Component {
       username: '',
       email: '',
       password: '',
+      repeatPassword: '',
       awaiting: false,
       error: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = mapEventToState.bind(this);
-    this.validateEmail = validateEmail.bind(this);
+    this.invalidEmail = invalidEmail.bind(this);
+    this.invalidName = invalidName.bind(this);
   }
 
   async handleSubmit(e) {
@@ -65,7 +69,7 @@ class RegisterPage extends Component {
 
   render() {
     const {
-      name, username, email, password, awaiting, error,
+      name, username, email, password, repeatPassword, awaiting, error,
     } = this.state;
 
     return (
@@ -77,9 +81,8 @@ class RegisterPage extends Component {
           <Screen>
             <div />
             <Form onSubmit={this.handleSubmit}>
-              <TextInput type="text" name="name" value={name} placeholder="name" onChange={this.handleChange} />
-              <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} />
-              <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} onValidate={this.validateEmail} />
+              <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} onInvalid={this.invalidName} />
+              <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} onInvalid={this.invalidEmail} />
               <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} />
               <Button type="submit" awaiting={awaiting} error={error} onSubmit={this.handleSubmit}>register</Button>
             </Form>
