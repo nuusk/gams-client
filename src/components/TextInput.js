@@ -57,6 +57,39 @@ const InputGroup = styled.div`
       right: 20px;
     }
   `}
+
+  ${({ invalid }) => invalid && css`
+    color: ${({ theme }) => theme.color.text.primary};
+    animation: error .12s linear, error .25s linear .12s;
+
+    &::after {
+      background-color: ${({ theme }) => theme.color.accent.error};
+      width: 100%;
+    }
+
+    &::before {
+      opacity: 0;
+      right: 0;
+    }
+  `}
+
+  @keyframes error {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-10px);
+    }
+    50% {
+      transform: translateX(0);
+    }
+    75% {
+      transform: translateX(10px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 `;
 
 const InputLabel = styled.label`
@@ -74,6 +107,10 @@ const InputLabel = styled.label`
   ${({ isActive }) => isActive && css`
     top: -1rem;
     opacity: 1;
+  `}
+
+  ${({ invalid }) => invalid && css`
+    color: ${({ theme }) => theme.color.accent.error};
   `}
 `;
 
@@ -113,8 +150,14 @@ class TextInput extends Component {
 
   handleBlur(e) {
     // validate if input is ok
-    if (e.target.value !== '') {
-      this.setState({ isOk: true });
+    const { value } = e.target;
+    const { onValidate } = this.props;
+    if (value !== '') {
+      if (onValidate(e)) {
+        this.setState({ isOk: true });
+      } else {
+        this.setState({ invalid: true });
+      }
     }
   }
 
@@ -123,18 +166,20 @@ class TextInput extends Component {
   }
 
   render() {
-    const { isFocused, isOk } = this.state;
+    const { isFocused, isOk, invalid } = this.state;
     const {
       value, placeholder, type, name, onChange, required, primary,
     } = this.props;
     const isFilled = value !== '';
 
     return (
-      <InputGroup inverted={isOk} primary={primary}>
+      <InputGroup inverted={isOk} primary={primary} invalid={invalid}>
         <InputLabel
           htmlFor={this.id}
           isActive={isFocused || isFilled}
+          invalid={invalid}
         >
+          {invalid ? 'invalid ' : ''}
           {placeholder}
         </InputLabel>
         <InputElement
@@ -149,6 +194,7 @@ class TextInput extends Component {
           onChange={(e) => {
             this.setState({
               isOk: false,
+              invalid: false,
             });
             onChange(e);
           }}
@@ -163,6 +209,7 @@ class TextInput extends Component {
 TextInput.defaultProps = {
   required: false,
   primary: true,
+  onValidate: () => true,
 };
 
 TextInput.propTypes = {
@@ -173,6 +220,7 @@ TextInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   primary: PropTypes.bool,
+  onValidate: PropTypes.func,
 };
 
 export default TextInput;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CustomPropTypes from '../helpers/CustomPropTypes';
 import Layout from '../components/Layout';
@@ -8,6 +7,7 @@ import AppLogo from '../components/AppLogo';
 import Form from '../components/Form';
 import { profileLogin } from '../actions/profileActions';
 import mapEventToState from '../helpers/mapEventToState';
+import validateEmail from '../helpers/validateEmail';
 import { request } from '../helpers/request';
 import {
   setCookie, TOKEN_COOKIE, USERNAME_COOKIE, EMAIL_COOKIE,
@@ -15,8 +15,6 @@ import {
 import Screen from '../components/Screen';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
-
-// const Screen = createScreen(Form, AppLogo, AppLogo);
 
 class RegisterPage extends Component {
   constructor() {
@@ -33,6 +31,7 @@ class RegisterPage extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = mapEventToState.bind(this);
+    this.validateEmail = validateEmail.bind(this);
   }
 
   async handleSubmit(e) {
@@ -80,7 +79,7 @@ class RegisterPage extends Component {
             <Form onSubmit={this.handleSubmit}>
               <TextInput type="text" name="name" value={name} placeholder="name" onChange={this.handleChange} />
               <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} />
-              <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} />
+              <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} onValidate={this.validateEmail} />
               <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} />
               <Button type="submit" awaiting={awaiting} error={error} onSubmit={this.handleSubmit}>register</Button>
             </Form>
