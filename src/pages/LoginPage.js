@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import AppLogo from '../components/AppLogo';
+import RegisterFormContainer from '../containers/RegisterFormContainer';
 
 export default function LoginPage() {
   return (
@@ -8,7 +9,7 @@ export default function LoginPage() {
       <header>
         <AppLogo />
       </header>
-      <div>logowanko</div>
+      <RegisterFormContainer />
       <footer>
         2019
       </footer>
