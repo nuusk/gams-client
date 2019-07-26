@@ -89,14 +89,19 @@ const Wrapper = styled.button`
 
 const ButtonText = styled.div`
   position: absolute;
-  z-index: ${({ theme }) => theme.visuals.zindex.front}
-  transition: ${({ theme }) => theme.visuals.transition.quick}
+  z-index: ${({ theme }) => theme.visuals.zindex.front};
+  transition: ${({ theme }) => theme.visuals.transition.quick};
+
+  ${({ awaiting }) => awaiting
+    && css`
+      opacity: 0;
+  `}
 `;
 
 const Button = ({ children, awaiting, ...rest }) => (
   <Wrapper awaiting={awaiting} {...rest} disabled={awaiting}>
-    <ButtonText>
-      {awaiting ? 'awaiting' : children}
+    <ButtonText awaiting={awaiting}>
+      {children}
     </ButtonText>
   </Wrapper>
 );
