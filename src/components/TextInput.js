@@ -157,7 +157,7 @@ class TextInput extends Component {
       if (!error) {
         this.setState({ isOk: true });
       } else {
-        this.setState({ invalid: true });
+        this.setState({ invalid: error });
       }
     }
   }
@@ -167,7 +167,9 @@ class TextInput extends Component {
   }
 
   render() {
-    const { isFocused, isOk, invalid } = this.state;
+    const {
+      isFocused, isOk, invalid,
+    } = this.state;
     const {
       value, placeholder, type, name, onChange, required, primary,
     } = this.props;
@@ -180,8 +182,7 @@ class TextInput extends Component {
           isActive={isFocused || isFilled}
           invalid={invalid}
         >
-          {invalid ? 'invalid ' : ''}
-          {placeholder}
+          {invalid || placeholder}
         </InputLabel>
         <InputElement
           type={type}
