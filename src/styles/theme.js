@@ -11,6 +11,7 @@ const theme = {
     },
     background: {
       base: '#191716',
+      far: '#050505',
     },
     elements: {
       line: '#EDDD00',
@@ -19,6 +20,7 @@ const theme = {
         base: '#FDFFFC',
         active: '#EDDD00',
       },
+      labe: '#E9EAE8',
     },
     palette: { // for reference
       platinum: '#E9EAE8',
@@ -30,7 +32,10 @@ const theme = {
     },
   },
   font: {
-    family: 'Rubik, sans-serif',
+    family: {
+      base: 'Rubik, sans-serif',
+      special: 'Megrim, sans-serif',
+    },
     size: {
       base: '16px',
       heading: {
@@ -38,7 +43,7 @@ const theme = {
         secondary: '2rem',
       },
       label: {
-        primary: '1.125rem',
+        primary: '1.25rem',
         secondary: '0.875rem',
       },
     },
@@ -57,14 +62,9 @@ const theme = {
     line: '4px',
     border: '2px',
     gap: '16px',
-    padding: {
-      small: '2px',
-      normal: '6px',
-      big: '10px',
-    },
     screen: {
       wide: '100vw',
-      narrow: '1000px',
+      narrow: '1200px',
     },
   },
   visuals: {
@@ -74,14 +74,16 @@ const theme = {
     },
     transition: {
       quick: '0.2s cubic-bezier(.57,.17,.32,.92)',
-      base: '0.4s cubic-bezier(.57,.17,.32,.92)',
-      slow: '1s cubic-bezier(.57,.17,.32,.92)',
+      base: '0.4s cubic-bezier(.49,.98,.87,.99)',
+      slow: '1s cubic-bezier(.49,.98,.87,.99)',
     },
     perspective: {
-      far: '2000px',
+      far: '1000px',
     },
     zindex: {
-      front: 100,
+      front: 3000,
+      middle: 2000,
+      back: 1000,
     },
   },
 };

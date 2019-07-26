@@ -1,13 +1,24 @@
 import React from 'react';
 import GamesContainer from '../containers/GamesContainer';
+import PlayerContainer from '../containers/PlayerContainer';
 import Layout from '../components/Layout';
-import AppHeader from '../components/AppHeader';
+import AppLogo from '../components/AppLogo';
+import Screen from '../components/Screen';
 
 export default function GameSelectionPage() {
   return (
-    <Layout columned>
-      <AppHeader />
-      <GamesContainer />
+    <Layout columned narrow>
+      <header>
+        <AppLogo />
+      </header>
+      <Screen>
+        <PlayerContainer />
+        <GamesContainer />
+        <AppLogo />
+      </Screen>
+      <footer>
+        2019
+      </footer>
     </Layout>
   );
 }

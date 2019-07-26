@@ -3,13 +3,25 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Megrim&display=swap');
 
   ${styledNormalize}
 
   body {
     color: ${({ theme }) => theme.color.text.primary};
-    font-family: ${({ theme }) => theme.font.family};
+    font-family: ${({ theme }) => theme.font.family.base};
     font-weight: ${({ theme }) => theme.font.weight.base};
+    perspective: ${({ theme }) => theme.visuals.perspective.far};
+  }
+
+  header, main, footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  main {
+    flex: 1;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -52,6 +64,16 @@ const GlobalStyle = createGlobalStyle`
   img {
     height: auto;
     max-width: 100%;
+  }
+
+  // reset autofill styles
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active  {
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+    font-family: ${({ theme }) => theme.font.family.base};
+    font-weight: ${({ theme }) => theme.font.weight.base};
   }
 `;
 
