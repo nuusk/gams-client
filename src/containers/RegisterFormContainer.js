@@ -5,6 +5,7 @@ import CustomPropTypes from '../helpers/CustomPropTypes';
 import Form from '../components/Form';
 import Cube from '../components/Cube';
 import Arrow from '../components/Arrow';
+import Avatar from '../components/Avatar';
 import { profileLogin } from '../actions/profileActions';
 import mapEventToState from '../helpers/mapEventToState';
 import invalidEmail from '../helpers/invalidEmail';
@@ -28,6 +29,7 @@ class RegisterFormContainer extends Component {
       awaiting: false,
       error: false,
       currentStep: 0,
+      avatars: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,6 +40,16 @@ class RegisterFormContainer extends Component {
     this.nextStep = this.nextStep.bind(this);
     this.previousStep = this.previousStep.bind(this);
   }
+
+  async componentWillMount() {
+    const defaultAvatars = await request('/profiles/avatars', {
+      method: 'GET',
+    });
+    this.setState({
+      avatars: defaultAvatars.map(avatar => avatar.imageURL),
+    });
+  }
+
 
   async handleSubmit(e) {
     e.preventDefault();
@@ -72,10 +84,10 @@ class RegisterFormContainer extends Component {
     }
   }
 
+
   nextStep(e) {
     const { currentStep } = this.state;
     e.preventDefault();
-    console.log(currentStep);
     this.setState({
       currentStep: currentStep + 1,
     });
@@ -92,7 +104,7 @@ class RegisterFormContainer extends Component {
 
   render() {
     const {
-      username, email, password, awaiting, error, currentStep,
+      username, email, password, awaiting, error, currentStep, avatars,
     } = this.state;
 
     return (
@@ -106,6 +118,7 @@ class RegisterFormContainer extends Component {
             <Button awaiting={awaiting} error={error} onClick={this.nextStep} alignBottom>next</Button>
           </div>
           <div>
+            <Avatar imageURL={avatars[0]} alt="" />
             <Arrow secondary absoluteLeft onClick={this.previousStep} />
             <Button awaiting={awaiting} error={error} onClick={this.handleSubmit} alignBottom>register</Button>
           </div>

@@ -20,7 +20,7 @@ export const buildRequest = (endpoint, { method, body, headers }) => new Request
       'Content-Type': 'application/json',
       ...headers,
     },
-    method,
+    method: method || 'GET',
     body: JSON.stringify(body),
   },
 );
