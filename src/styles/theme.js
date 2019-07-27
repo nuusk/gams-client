@@ -29,6 +29,8 @@ const theme = {
       titaniumYellow: '#EDDD00',
       lightSeaGreen: '#1B9AAA',
       upsdellRed: '#AA1B2E',
+      turquoiseBlue: '#00FDE9',
+      grape: '#6b34bd',
     },
   },
   font: {
