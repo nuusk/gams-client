@@ -50,6 +50,20 @@ const Wrapper = styled.button`
     }
   `}
 
+  ${({ secondary }) => secondary
+    && css`
+    background-color: ${({ theme }) => theme.color.accent.secondary};
+    color: ${({ theme }) => theme.color.accent.primary}
+
+    &::after {
+      background-color: ${({ theme }) => theme.color.accent.primary};
+    }
+
+    &:hover {
+      color: ${({ theme }) => theme.color.background.base};
+    }
+  `}
+
   ${({ alignBottom }) => alignBottom
     && css`
       margin-top: auto;

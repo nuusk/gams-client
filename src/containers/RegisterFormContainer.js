@@ -39,6 +39,7 @@ class RegisterFormContainer extends Component {
     this.invalidPassword = invalidPassword.bind(this);
     this.nextStep = this.nextStep.bind(this);
     this.previousStep = this.previousStep.bind(this);
+    this.chooseAvatar = this.chooseAvatar.bind(this);
   }
 
   async componentWillMount() {
@@ -50,6 +51,9 @@ class RegisterFormContainer extends Component {
     });
   }
 
+  chooseAvatar() {
+    console.log(123);
+  }
 
   async handleSubmit(e) {
     e.preventDefault();
@@ -118,7 +122,7 @@ class RegisterFormContainer extends Component {
             <Button awaiting={awaiting} error={error} onClick={this.nextStep} alignBottom>next</Button>
           </div>
           <div>
-            <Avatar imageURL={avatars[0]} alt="" />
+            <Avatar imageURL={avatars[0]} alt="" labelText="change avatar" onClick={this.chooseAvatar} />
             <Arrow secondary absoluteLeft onClick={this.previousStep} />
             <Button awaiting={awaiting} error={error} onClick={this.handleSubmit} alignBottom>register</Button>
           </div>
