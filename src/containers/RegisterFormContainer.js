@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CustomPropTypes from '../helpers/CustomPropTypes';
 import Form from '../components/Form';
+import Cube from '../components/Cube';
+import Arrow from '../components/Arrow';
 import { profileLogin } from '../actions/profileActions';
 import mapEventToState from '../helpers/mapEventToState';
 import invalidEmail from '../helpers/invalidEmail';
@@ -25,6 +27,7 @@ class RegisterFormContainer extends Component {
       password: '',
       awaiting: false,
       error: false,
+      currentStep: 0,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,6 +35,8 @@ class RegisterFormContainer extends Component {
     this.invalidEmail = invalidEmail.bind(this);
     this.invalidName = invalidName.bind(this);
     this.invalidPassword = invalidPassword.bind(this);
+    this.nextStep = this.nextStep.bind(this);
+    this.previousStep = this.previousStep.bind(this);
   }
 
   async handleSubmit(e) {
@@ -67,17 +72,46 @@ class RegisterFormContainer extends Component {
     }
   }
 
+  nextStep(e) {
+    const { currentStep } = this.state;
+    e.preventDefault();
+    console.log(currentStep);
+    this.setState({
+      currentStep: currentStep + 1,
+    });
+  }
+
+  previousStep(e) {
+    const { currentStep } = this.state;
+    e.preventDefault();
+
+    this.setState({
+      currentStep: currentStep - 1,
+    });
+  }
+
   render() {
     const {
-      username, email, password, awaiting, error,
+      username, email, password, awaiting, error, currentStep,
     } = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} onInvalid={this.invalidName} />
-        <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} onInvalid={this.invalidEmail} />
-        <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} onInvalid={this.invalidPassword} />
-        <Button type="submit" awaiting={awaiting} error={error} onSubmit={this.handleSubmit}>register</Button>
+
+        <Cube step={currentStep}>
+          <div>
+            <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} onInvalid={this.invalidName} />
+            <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} onInvalid={this.invalidEmail} />
+            <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} onInvalid={this.invalidPassword} />
+            <Button awaiting={awaiting} error={error} onClick={this.nextStep} alignBottom>next</Button>
+          </div>
+          <div>
+            <Arrow secondary absoluteLeft onClick={this.previousStep} />
+            <Button awaiting={awaiting} error={error} onClick={this.handleSubmit} alignBottom>register</Button>
+          </div>
+          <div />
+          <div />
+        </Cube>
       </Form>
     );
   }

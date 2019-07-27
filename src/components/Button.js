@@ -50,6 +50,13 @@ const Wrapper = styled.button`
     }
   `}
 
+  ${({ alignBottom }) => alignBottom
+    && css`
+      margin-top: auto;
+  `}
+
+  
+
   ${({ awaiting }) => awaiting
     && css`
     &::before {

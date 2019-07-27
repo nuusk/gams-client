@@ -8,6 +8,7 @@ const InputGroup = styled.div`
   margin: 1rem 0;
   padding: 0 1rem;
   width: 100%;
+  box-sizing: border-box;
   
   &::after {
     display: block;
