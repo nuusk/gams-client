@@ -17,7 +17,7 @@ render(
       <>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={GameSelectionPage} />
+            <Route exact path="/" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
           </Switch>
