@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import store from './store/store';
 import theme from './styles/theme';
 import GlobalStyle from './styles/GlobalStyles';
-// import GameSelectionPage from './pages/GameSelectionPage';
+import GameSelectionPage from './pages/GameSelectionPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
@@ -17,7 +17,7 @@ render(
       <>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={RegisterPage} />
+            <Route exact path="/" component={GameSelectionPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
           </Switch>

@@ -39,7 +39,6 @@ const Wrapper = styled.div`
     && css`
     cursor: pointer;
   `}
-
 `;
 
 const Avatar = ({ imageURL, labelText, ...rest }) => (

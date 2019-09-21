@@ -98,7 +98,7 @@ class RegisterFormContainer extends Component {
     e.preventDefault();
 
     const {
-      username, email, password, selectedAvatar
+      username, email, password, selectedAvatar,
     } = this.state;
 
     const { onRegister, history } = this.props;
@@ -110,7 +110,10 @@ class RegisterFormContainer extends Component {
     const registerResponse = await request('/profiles', {
       method: 'POST',
       body: {
-        username, email, password, selectedAvatar,
+        username: username.value,
+        email: email.value,
+        password: password.value,
+        selectedAvatar,
       },
     });
 

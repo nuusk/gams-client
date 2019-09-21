@@ -1,3 +1,5 @@
+import { jwtRequest } from '../helpers/request';
+
 export const FETCH_PROFILE_BEGIN = 'FETCH_PROFILE_BEGIN';
 export const FETCH_PROFILE_SUCCESS = 'FETCH_PROFILE_SUCCESS';
 export const FETCH_PROFILE_FAILURE = 'FETCH_PROFILE_FAILURE';
@@ -27,14 +29,13 @@ function handleErrors(response) {
 export function fetchProfile() {
   return (dispatch) => {
     dispatch(fetchProfileBegin());
-    return fetch(`${process.env.REACT_APP_SERVER_ADDRESS}/profiles/me`)
-      .then(handleErrors)
-      .then(res => res.json())
-      .then((json) => {
-        dispatch(fetchProfileSuccess(json));
-        return json;
-      })
-      .catch(error => dispatch(fetchProfileFailure(error)));
+
+    return jwtRequest('/profiles/me', {
+      method: 'GET',
+    }).then((json) => {
+      dispatch(fetchProfileSuccess(json));
+      return json;
+    });
   };
 }
 
