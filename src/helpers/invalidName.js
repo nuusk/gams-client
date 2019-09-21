@@ -6,5 +6,5 @@ export default function (e) {
   for (let i = 0; i < textInput.length; i += 1) {
     if (WHITE_LIST.indexOf(textInput[i]) === -1) return ERROR_MESSAGE;
   }
-  return false;
+  return '';
 }

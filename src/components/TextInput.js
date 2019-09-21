@@ -171,7 +171,7 @@ class TextInput extends Component {
       isFocused, isOk,
     } = this.state;
     const {
-      value, placeholder, type, name, onChange, required, primary, invalid, validateValue, updateInvalid
+      value, placeholder, type, name, onChange, required, primary, invalid, validateValue, updateInvalid,
     } = this.props;
     const isFilled = value !== '';
 
@@ -214,7 +214,7 @@ TextInput.defaultProps = {
   required: false,
   primary: true,
   invalid: '',
-  validateValue: () => false,
+  validateValue: () => '',
   updateInvalid: () => false,
 };
 
