@@ -20,8 +20,8 @@ const Wrapper = styled.div`
 
 const Tile = styled.div`
   background: ${imageURL => `url(${imageURL.imageURL}) no-repeat center`};
-  background-size: cover;
   border: 2px solid white;
+  background-size: contain;
   display: inline-block;
   transition: ${({ theme }) => theme.visuals.transition.quick};
   position: relative;
