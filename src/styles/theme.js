@@ -20,7 +20,7 @@ const theme = {
         base: '#FDFFFC',
         active: '#EDDD00',
       },
-      labe: '#E9EAE8',
+      label: '#E9EAE8',
     },
     palette: { // for reference
       platinum: '#E9EAE8',

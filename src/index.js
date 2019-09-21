@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import store from './store/store';
 import theme from './styles/theme';
 import GlobalStyle from './styles/GlobalStyles';
-import GameSelectionPage from './pages/GameSelectionPage';
+// import GameSelectionPage from './pages/GameSelectionPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 

@@ -125,6 +125,10 @@ const InputElement = styled.input`
   z-index: ${({ theme }) => theme.visuals.zindex.front};
   transition: color ${({ theme }) => theme.visuals.transition.base};
 
+  &:-webkit-autofill {
+    -webkit-text-fill-color: ${({ theme }) => theme.color.accent.secondary} !important;
+  }
+
   &::placeholder {
     color: ${({ theme }) => theme.color.text.secondary} !important;
   }

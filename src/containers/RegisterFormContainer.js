@@ -17,6 +17,7 @@ import {
 } from '../helpers/cookies';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
+import SelectionPopup from '../components/SelectionPopup';
 
 class RegisterFormContainer extends Component {
   constructor() {
@@ -38,6 +39,8 @@ class RegisterFormContainer extends Component {
         value: '',
         invalid: '',
       },
+      selectedAvatar: '',
+      isSelectionPopupOpened: false,
       awaiting: false,
       error: false,
       currentStep: 0,
@@ -53,22 +56,38 @@ class RegisterFormContainer extends Component {
     this.previousStep = this.previousStep.bind(this);
     this.chooseAvatar = this.chooseAvatar.bind(this);
     this.updateInvalid = this.updateInvalid.bind(this);
+    this.openSelectionPopup = this.openSelectionPopup.bind(this);
   }
 
   async componentWillMount() {
     const defaultAvatars = await request('/profiles/avatars', {
       method: 'GET',
-    });
+    })
 
     if (defaultAvatars.length) {
       this.setState({
-        avatars: defaultAvatars.map(avatar => avatar.imageURL),
+        avatars: defaultAvatars.slice(0, 20),
+        selectedAvatar: defaultAvatars[Math.floor(Math.random() * 20)].imageURL,
       });
     }
   }
 
-  chooseAvatar() {
-    console.log(123);
+  chooseAvatar(imageURL) {
+    console.log(imageURL);
+
+    this.setState({
+      selectedAvatar: imageURL,
+    }, () => {
+      this.setState({
+        isSelectionPopupOpened: false,
+      });
+    });
+  }
+
+  openSelectionPopup() {
+    this.setState({
+      isSelectionPopupOpened: true,
+    });
   }
 
   updateInvalid(name, invalid) {
@@ -110,7 +129,6 @@ class RegisterFormContainer extends Component {
     }
   }
 
-
   nextStep(e) {
     const {
       currentStep, username, email, password,
@@ -127,6 +145,7 @@ class RegisterFormContainer extends Component {
         canGoNext = false;
       }
     });
+
     if (canGoNext) {
       this.setState({
         currentStep: currentStep + 1,
@@ -145,12 +164,14 @@ class RegisterFormContainer extends Component {
 
   render() {
     const {
-      username, email, password, awaiting, error, currentStep, avatars,
+      username, email, password, awaiting, error, currentStep, avatars, isSelectionPopupOpened, selectedAvatar,
     } = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit}>
-
+        {
+          isSelectionPopupOpened && <SelectionPopup chooseAvatar={this.chooseAvatar} items={avatars} />
+        }
         <Cube step={currentStep}>
           <div>
             <TextInput type="text" name="username" value={username.value} placeholder="username" onChange={this.handleChange} invalid={username.invalid} validateValue={this.invalidName} updateInvalid={this.updateInvalid} />
@@ -159,7 +180,7 @@ class RegisterFormContainer extends Component {
             <Button awaiting={awaiting} error={error} onClick={this.nextStep} alignBottom>next</Button>
           </div>
           <div>
-            <Avatar imageURL={avatars[0]} alt="" labelText="change avatar" onClick={this.chooseAvatar} />
+            <Avatar imageURL={selectedAvatar} alt="" labelText="change avatar" onClick={this.openSelectionPopup} />
             <Arrow secondary absoluteLeft onClick={this.previousStep} />
             <Button awaiting={awaiting} error={error} onClick={this.handleSubmit} alignBottom>register</Button>
           </div>

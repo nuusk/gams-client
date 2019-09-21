@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.h1`
-  font-family: ${({ theme }) => theme.font.family.special};
-  text-align: center;
+const LogoImage = styled.img`
+  display: block;
+  max-width: 140px;
+  max-height: 140px;
+  width: auto;
+  height: auto;
 `;
 
 const AppLogo = () => (
-  <Wrapper>GamS</Wrapper>
+  <LogoImage src="/images/gams-logo.png" />
 );
 
 export default AppLogo;
