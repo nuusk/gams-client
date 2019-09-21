@@ -113,7 +113,7 @@ class RegisterFormContainer extends Component {
         username: username.value,
         email: email.value,
         password: password.value,
-        selectedAvatar,
+        avatarURL: selectedAvatar,
       },
     });
 
