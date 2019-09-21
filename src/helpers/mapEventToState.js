@@ -1,6 +1,6 @@
-export default function (event) {
+export default function (event, property) {
   const { name, value } = event.target;
   const newState = { ...this.state };
-  newState[name].value = value;
+  newState[name][property] = value;
   this.setState(newState);
 }

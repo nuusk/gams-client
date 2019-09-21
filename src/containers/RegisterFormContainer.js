@@ -23,9 +23,21 @@ class RegisterFormContainer extends Component {
     super();
 
     this.state = {
-      username: '',
-      email: '',
-      password: '',
+      username: {
+        name: 'username',
+        value: '',
+        invalid: '',
+      },
+      email: {
+        name: 'email',
+        value: '',
+        invalid: '',
+      },
+      password: {
+        name: 'password',
+        value: '',
+        invalid: '',
+      },
       awaiting: false,
       error: false,
       currentStep: 0,
@@ -40,19 +52,29 @@ class RegisterFormContainer extends Component {
     this.nextStep = this.nextStep.bind(this);
     this.previousStep = this.previousStep.bind(this);
     this.chooseAvatar = this.chooseAvatar.bind(this);
+    this.updateInvalid = this.updateInvalid.bind(this);
   }
 
   async componentWillMount() {
     const defaultAvatars = await request('/profiles/avatars', {
       method: 'GET',
     });
-    this.setState({
-      avatars: defaultAvatars.map(avatar => avatar.imageURL),
-    });
+
+    if (defaultAvatars.length) {
+      this.setState({
+        avatars: defaultAvatars.map(avatar => avatar.imageURL),
+      });
+    }
   }
 
   chooseAvatar() {
     console.log(123);
+  }
+
+  updateInvalid(name, invalid) {
+    const newState = { ...this.state };
+    newState[name].invalid = invalid;
+    this.setState(newState);
   }
 
   async handleSubmit(e) {
@@ -90,11 +112,26 @@ class RegisterFormContainer extends Component {
 
 
   nextStep(e) {
-    const { currentStep } = this.state;
+    const {
+      currentStep, username, email, password,
+    } = this.state;
     e.preventDefault();
-    this.setState({
-      currentStep: currentStep + 1,
+
+    let canGoNext = true;
+    [username, email, password].forEach((property) => {
+      if (!property.value) {
+        this.updateInvalid(property.name, 'this field is required');
+        canGoNext = false;
+      }
+      if (!property.value || property.invalid) {
+        canGoNext = false;
+      }
     });
+    if (canGoNext) {
+      this.setState({
+        currentStep: currentStep + 1,
+      });
+    }
   }
 
   previousStep(e) {
@@ -116,9 +153,9 @@ class RegisterFormContainer extends Component {
 
         <Cube step={currentStep}>
           <div>
-            <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} onInvalid={this.invalidName} />
-            <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} onInvalid={this.invalidEmail} />
-            <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} onInvalid={this.invalidPassword} />
+            <TextInput type="text" name="username" value={username.value} placeholder="username" onChange={this.handleChange} invalid={username.invalid} validateValue={this.invalidName} updateInvalid={this.updateInvalid} />
+            <TextInput type="text" name="email" value={email.value} placeholder="email" onChange={this.handleChange} invalid={email.invalid} validateValue={this.invalidEmail} updateInvalid={this.updateInvalid} />
+            <TextInput type="password" name="password" value={password.value} placeholder="password" onChange={this.handleChange} invalid={password.invalid} validateValue={this.invalidPassword} updateInvalid={this.updateInvalid} />
             <Button awaiting={awaiting} error={error} onClick={this.nextStep} alignBottom>next</Button>
           </div>
           <div>

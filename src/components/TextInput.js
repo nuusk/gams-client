@@ -151,14 +151,13 @@ class TextInput extends Component {
 
   handleBlur(e) {
     // validate if input is ok
-    const { value } = e.target;
-    const { onInvalid } = this.props;
+    const { value, name } = e.target;
+    const { validateValue, updateInvalid } = this.props;
     if (value !== '') {
-      const error = onInvalid(e);
+      const error = validateValue(e);
+      updateInvalid(name, error);
       if (!error) {
         this.setState({ isOk: true });
-      } else {
-        this.setState({ invalid: error });
       }
     }
   }
@@ -169,10 +168,10 @@ class TextInput extends Component {
 
   render() {
     const {
-      isFocused, isOk, invalid,
+      isFocused, isOk,
     } = this.state;
     const {
-      value, placeholder, type, name, onChange, required, primary,
+      value, placeholder, type, name, onChange, required, primary, invalid,
     } = this.props;
     const isFilled = value !== '';
 
@@ -180,7 +179,7 @@ class TextInput extends Component {
       <InputGroup inverted={isOk} primary={primary} invalid={invalid}>
         <InputLabel
           htmlFor={this.id}
-          isActive={isFocused || isFilled}
+          isActive={isFocused || isFilled || invalid}
           invalid={invalid}
         >
           {invalid || placeholder}
@@ -197,9 +196,8 @@ class TextInput extends Component {
           onChange={(e) => {
             this.setState({
               isOk: false,
-              invalid: false,
             });
-            onChange(e);
+            onChange(e, 'value');
           }}
           isFilled={isFilled}
           required={required}
@@ -212,7 +210,9 @@ class TextInput extends Component {
 TextInput.defaultProps = {
   required: false,
   primary: true,
-  onInvalid: () => false,
+  invalid: '',
+  validateValue: () => false,
+  updateInvalid: () => false,
 };
 
 TextInput.propTypes = {
@@ -223,7 +223,9 @@ TextInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   primary: PropTypes.bool,
-  onInvalid: PropTypes.func,
+  invalid: PropTypes.string,
+  validateValue: PropTypes.func,
+  updateInvalid: PropTypes.func,
 };
 
 export default TextInput;
