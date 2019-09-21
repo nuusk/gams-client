@@ -171,7 +171,7 @@ class TextInput extends Component {
       isFocused, isOk,
     } = this.state;
     const {
-      value, placeholder, type, name, onChange, required, primary, invalid,
+      value, placeholder, type, name, onChange, required, primary, invalid, validateValue, updateInvalid
     } = this.props;
     const isFilled = value !== '';
 
@@ -198,6 +198,9 @@ class TextInput extends Component {
               isOk: false,
             });
             onChange(e, 'value');
+            if (invalid) {
+              updateInvalid(name, validateValue(e));
+            }
           }}
           isFilled={isFilled}
           required={required}
