@@ -73,8 +73,6 @@ class RegisterFormContainer extends Component {
   }
 
   chooseAvatar(imageURL) {
-    console.log(imageURL);
-
     this.setState({
       selectedAvatar: imageURL,
     }, () => {
@@ -100,7 +98,7 @@ class RegisterFormContainer extends Component {
     e.preventDefault();
 
     const {
-      username, email, password,
+      username, email, password, selectedAvatar
     } = this.state;
 
     const { onRegister, history } = this.props;
@@ -112,7 +110,7 @@ class RegisterFormContainer extends Component {
     const registerResponse = await request('/profiles', {
       method: 'POST',
       body: {
-        username, email, password,
+        username, email, password, selectedAvatar,
       },
     });
 
