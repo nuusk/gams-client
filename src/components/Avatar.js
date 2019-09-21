@@ -22,7 +22,7 @@ const AvatarLabel = styled.div`
 const Wrapper = styled.div`
   background: ${imageURL => `url(${imageURL.imageURL}) no-repeat center`};
   background-size: contain;
-  background-posiion: bottom;
+  background-position: bottom;
   height: 160px;
   width: 160px;
   border: 2px solid white;

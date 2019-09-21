@@ -22,7 +22,7 @@ const Tile = styled.div`
   background: ${imageURL => `url(${imageURL.imageURL}) no-repeat center`};
   border: 2px solid white;
   background-size: contain;
-  background-posiion: bottom;
+  background-position: bottom;
   display: inline-block;
   transition: ${({ theme }) => theme.visuals.transition.quick};
   position: relative;
