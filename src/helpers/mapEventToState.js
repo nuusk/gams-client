@@ -1,7 +1,6 @@
 export default function (event) {
   const { name, value } = event.target;
-
-  this.setState({
-    [name]: value,
-  });
+  const newState = { ...this.state };
+  newState[name].value = value;
+  this.setState(newState);
 }
