@@ -16,6 +16,15 @@ const Wrapper = styled.div`
   grid-gap: 10px;
   grid-template-columns: repeat(5, 1fr);
   background-color: ${({ theme }) => theme.color.background.far};
+
+  @media ${({ theme }) => theme.devices.tablet} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ${({ theme }) => theme.devices.mobile} {
+    grid-template-columns: repeat(1, 1fr);
+    overflow: scroll;
+  }
 `;
 
 const Tile = styled.div`
@@ -23,6 +32,20 @@ const Tile = styled.div`
   border: 2px solid white;
   background-size: contain;
   background-position: bottom;
+  min-width: 200px;
+
+  @media ${({ theme }) => theme.devices.desktop} {
+    min-width: 180px;
+  }
+
+  @media ${({ theme }) => theme.devices.tablet} {
+    min-width: 110px;
+  }
+
+  @media ${({ theme }) => theme.devices.mobile} {
+    min-height: 140px;
+  }
+
   display: inline-block;
   transition: ${({ theme }) => theme.visuals.transition.quick};
   position: relative;
