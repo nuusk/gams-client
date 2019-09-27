@@ -7,6 +7,19 @@ const GlobalStyle = createGlobalStyle`
 
   ${styledNormalize}
 
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: black;
+    font-size: ${({ theme }) => theme.font.size.base};
+  }
+
   body {
     color: ${({ theme }) => theme.color.text.primary};
     font-family: ${({ theme }) => theme.font.family.base};

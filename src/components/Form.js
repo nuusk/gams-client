@@ -15,7 +15,7 @@ const FormWrapper = styled.form`
 const Form = ({
   children, ...rest
 }) => (
-  <FormWrapper {...rest}>{children}</FormWrapper>
+  <FormWrapper autoComplete="off" {...rest}>{children}</FormWrapper>
 );
 
 Form.propTypes = {
