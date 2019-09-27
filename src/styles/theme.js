@@ -1,3 +1,9 @@
+const size = {
+  mobile: 425,
+  tablet: 1024,
+  desktop: 2560,
+};
+
 const theme = {
   color: {
     accent: {
@@ -87,6 +93,11 @@ const theme = {
       middle: 2000,
       back: 1000,
     },
+  },
+  devices: {
+    mobile: `(max-width: ${size.mobile}px)`,
+    tablet: `(min-width: ${size.mobile + 1}px) and (max-width: ${size.tablet}px)`,
+    desktop: `(min-width: ${size.tablet + 1}px) and (max-width: ${size.desktop}px)`,
   },
 };
 
