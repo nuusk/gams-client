@@ -1,18 +1,23 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import AppLogo from '../components/AppLogo';
-import RegisterFormContainer from '../containers/RegisterFormContainer';
+import LoginFormContainer from '../containers/LoginFormContainer';
+import CustomPropTypes from '../helpers/CustomPropTypes';
 
-export default function LoginPage() {
+export default function LoginPage({ history }) {
   return (
     <Layout columned narrow>
       <header>
         <AppLogo />
       </header>
-      <RegisterFormContainer />
+      <LoginFormContainer history={history} />
       <footer>
         2019
       </footer>
     </Layout>
   );
 }
+
+LoginPage.propTypes = {
+  history: CustomPropTypes.history.isRequired,
+};

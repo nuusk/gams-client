@@ -19,13 +19,6 @@ export const fetchProfileFailure = error => ({
   payload: error,
 });
 
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
-}
-
 export function fetchProfile() {
   return (dispatch) => {
     dispatch(fetchProfileBegin());
