@@ -14,7 +14,7 @@ export default function GameSelectionPage() {
       <Screen>
         <PlayerContainer />
         <GamesContainer />
-        <AppLogo />
+        <div />
       </Screen>
       <footer>
         2019
