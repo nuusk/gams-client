@@ -117,6 +117,7 @@ const InputLabel = styled.label`
 
 const InputElement = styled.input`
   border: none;
+  box-sizing: border-box;
   width: 100%;
   height: 2rem;
   background-color: transparent;
@@ -124,6 +125,10 @@ const InputElement = styled.input`
   position: relative;
   z-index: ${({ theme }) => theme.visuals.zindex.front};
   transition: color ${({ theme }) => theme.visuals.transition.base};
+
+  @media ${({ theme }) => theme.devices.mobile} {
+    padding-right: 30px;
+  }
 
   &::placeholder {
     color: ${({ theme }) => theme.color.text.secondary} !important;
