@@ -8,6 +8,7 @@ const InputGroup = styled.div`
   margin: 1rem 0;
   padding: 0 1rem;
   width: 100%;
+  box-sizing: border-box;
   
   &::after {
     display: block;
@@ -116,6 +117,7 @@ const InputLabel = styled.label`
 
 const InputElement = styled.input`
   border: none;
+  box-sizing: border-box;
   width: 100%;
   height: 2rem;
   background-color: transparent;
@@ -123,6 +125,7 @@ const InputElement = styled.input`
   position: relative;
   z-index: ${({ theme }) => theme.visuals.zindex.front};
   transition: color ${({ theme }) => theme.visuals.transition.base};
+  padding-right: 30px;
 
   &::placeholder {
     color: ${({ theme }) => theme.color.text.secondary} !important;
@@ -150,14 +153,13 @@ class TextInput extends Component {
 
   handleBlur(e) {
     // validate if input is ok
-    const { value } = e.target;
-    const { onInvalid } = this.props;
+    const { value, name } = e.target;
+    const { validateValue, updateInvalid } = this.props;
     if (value !== '') {
-      const error = onInvalid(e);
+      const error = validateValue(e);
+      updateInvalid(name, error);
       if (!error) {
         this.setState({ isOk: true });
-      } else {
-        this.setState({ invalid: error });
       }
     }
   }
@@ -168,10 +170,10 @@ class TextInput extends Component {
 
   render() {
     const {
-      isFocused, isOk, invalid,
+      isFocused, isOk,
     } = this.state;
     const {
-      value, placeholder, type, name, onChange, required, primary,
+      value, placeholder, type, name, onChange, required, primary, invalid, validateValue, updateInvalid,
     } = this.props;
     const isFilled = value !== '';
 
@@ -179,13 +181,14 @@ class TextInput extends Component {
       <InputGroup inverted={isOk} primary={primary} invalid={invalid}>
         <InputLabel
           htmlFor={this.id}
-          isActive={isFocused || isFilled}
+          isActive={isFocused || isFilled || invalid}
           invalid={invalid}
         >
           {invalid || placeholder}
         </InputLabel>
         <InputElement
           type={type}
+          autoComplete="off"
           name={name}
           value={value}
           placeholder={placeholder}
@@ -196,9 +199,11 @@ class TextInput extends Component {
           onChange={(e) => {
             this.setState({
               isOk: false,
-              invalid: false,
             });
-            onChange(e);
+            onChange(e, 'value');
+            if (invalid) {
+              updateInvalid(name, validateValue(e));
+            }
           }}
           isFilled={isFilled}
           required={required}
@@ -211,7 +216,9 @@ class TextInput extends Component {
 TextInput.defaultProps = {
   required: false,
   primary: true,
-  onInvalid: () => false,
+  invalid: '',
+  validateValue: () => '',
+  updateInvalid: () => false,
 };
 
 TextInput.propTypes = {
@@ -222,7 +229,9 @@ TextInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   primary: PropTypes.bool,
-  onInvalid: PropTypes.func,
+  invalid: PropTypes.string,
+  validateValue: PropTypes.func,
+  updateInvalid: PropTypes.func,
 };
 
 export default TextInput;

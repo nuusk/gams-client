@@ -1,3 +1,5 @@
+import { TOKEN_COOKIE, getCookie } from '../helpers/cookies';
+
 const isJson = (data) => {
   const contentType = data.headers.get('content-type');
   return contentType && contentType.indexOf('application/json') !== -1;
@@ -12,7 +14,7 @@ const handleResponse = (response) => {
   return undefined;
 };
 
-export const buildRequest = (endpoint, { method, body, headers }) => new Request(
+export const buildRequest = (endpoint, { method, body }, headers) => new Request(
   `${process.env.REACT_APP_SERVER_ADDRESS}${endpoint}`,
   {
     headers: {
@@ -20,7 +22,7 @@ export const buildRequest = (endpoint, { method, body, headers }) => new Request
       'Content-Type': 'application/json',
       ...headers,
     },
-    method,
+    method: method || 'GET',
     body: JSON.stringify(body),
   },
 );
@@ -29,7 +31,10 @@ export const request = (...args) => fetch(buildRequest(...args))
   .then(handleResponse).catch(err => err);
 
 export const jwtRequest = (...args) => {
-  const headers = args.headers || [];
-  headers.Authorization = `Bearer ${'HERE COMES TOKEN VALUE FROM A COOKIE'}`;
-  fetch(buildRequest(...args, headers)).then(handleResponse);
+  const headers = args.headers || {};
+  const tokenCookie = getCookie(TOKEN_COOKIE);
+  if (tokenCookie) {
+    headers.Authorization = `Bearer ${tokenCookie}`;
+  }
+  return fetch(buildRequest(...args, headers)).then(handleResponse);
 };

@@ -10,12 +10,16 @@ const FormWrapper = styled.form`
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
+
+  @media ${({ theme }) => theme.devices.mobile} {
+    flex: 1;
+  }
 `;
 
 const Form = ({
   children, ...rest
 }) => (
-  <FormWrapper {...rest}>{children}</FormWrapper>
+  <FormWrapper autoComplete="off" {...rest}>{children}</FormWrapper>
 );
 
 Form.propTypes = {

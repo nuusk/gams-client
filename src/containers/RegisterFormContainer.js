@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CustomPropTypes from '../helpers/CustomPropTypes';
 import Form from '../components/Form';
+import Cube from '../components/Cube';
+import Arrow from '../components/Arrow';
+import Avatar from '../components/Avatar';
 import { profileLogin } from '../actions/profileActions';
 import mapEventToState from '../helpers/mapEventToState';
 import invalidEmail from '../helpers/invalidEmail';
@@ -14,17 +17,34 @@ import {
 } from '../helpers/cookies';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
+import SelectionPopup from '../components/SelectionPopup';
 
 class RegisterFormContainer extends Component {
   constructor() {
     super();
 
     this.state = {
-      username: '',
-      email: '',
-      password: '',
+      username: {
+        name: 'username',
+        value: '',
+        invalid: '',
+      },
+      email: {
+        name: 'email',
+        value: '',
+        invalid: '',
+      },
+      password: {
+        name: 'password',
+        value: '',
+        invalid: '',
+      },
+      selectedAvatar: '',
+      isSelectionPopupOpened: false,
       awaiting: false,
       error: false,
+      currentStep: 0,
+      avatars: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,13 +52,53 @@ class RegisterFormContainer extends Component {
     this.invalidEmail = invalidEmail.bind(this);
     this.invalidName = invalidName.bind(this);
     this.invalidPassword = invalidPassword.bind(this);
+    this.nextStep = this.nextStep.bind(this);
+    this.previousStep = this.previousStep.bind(this);
+    this.chooseAvatar = this.chooseAvatar.bind(this);
+    this.updateInvalid = this.updateInvalid.bind(this);
+    this.openSelectionPopup = this.openSelectionPopup.bind(this);
+  }
+
+  async componentWillMount() {
+    const defaultAvatars = await request('/profiles/avatars', {
+      method: 'GET',
+    });
+
+    if (defaultAvatars.length) {
+      this.setState({
+        avatars: defaultAvatars.slice(0, 20),
+        selectedAvatar: defaultAvatars[Math.floor(Math.random() * 20)].imageURL,
+      });
+    }
+  }
+
+  chooseAvatar(imageURL) {
+    this.setState({
+      selectedAvatar: imageURL,
+    }, () => {
+      this.setState({
+        isSelectionPopupOpened: false,
+      });
+    });
+  }
+
+  openSelectionPopup() {
+    this.setState({
+      isSelectionPopupOpened: true,
+    });
+  }
+
+  updateInvalid(name, invalid) {
+    const newState = { ...this.state };
+    newState[name].invalid = invalid;
+    this.setState(newState);
   }
 
   async handleSubmit(e) {
     e.preventDefault();
 
     const {
-      username, email, password,
+      username, email, password, selectedAvatar,
     } = this.state;
 
     const { onRegister, history } = this.props;
@@ -50,7 +110,10 @@ class RegisterFormContainer extends Component {
     const registerResponse = await request('/profiles', {
       method: 'POST',
       body: {
-        username, email, password,
+        username: username.value,
+        email: email.value,
+        password: password.value,
+        avatarURL: selectedAvatar,
       },
     });
 
@@ -67,17 +130,123 @@ class RegisterFormContainer extends Component {
     }
   }
 
+  nextStep(e) {
+    const {
+      currentStep, username, email, password,
+    } = this.state;
+    e.preventDefault();
+
+    let canGoNext = true;
+    [username, email, password].forEach((property) => {
+      if (!property.value) {
+        this.updateInvalid(property.name, 'this field is required');
+        canGoNext = false;
+      }
+      if (!property.value || property.invalid) {
+        canGoNext = false;
+      }
+    });
+
+    if (canGoNext) {
+      this.setState({
+        currentStep: currentStep + 1,
+      });
+    }
+  }
+
+  previousStep(e) {
+    const { currentStep } = this.state;
+    e.preventDefault();
+
+    this.setState({
+      currentStep: currentStep - 1,
+    });
+  }
+
   render() {
     const {
-      username, email, password, awaiting, error,
+      username,
+      email,
+      password,
+      awaiting,
+      error,
+      currentStep,
+      avatars,
+      isSelectionPopupOpened,
+      selectedAvatar,
     } = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <TextInput type="text" name="username" value={username} placeholder="username" onChange={this.handleChange} onInvalid={this.invalidName} />
-        <TextInput type="text" name="email" value={email} placeholder="email" onChange={this.handleChange} onInvalid={this.invalidEmail} />
-        <TextInput type="password" name="password" value={password} placeholder="password" onChange={this.handleChange} onInvalid={this.invalidPassword} />
-        <Button type="submit" awaiting={awaiting} error={error} onSubmit={this.handleSubmit}>register</Button>
+        {
+          isSelectionPopupOpened
+          && <SelectionPopup chooseAvatar={this.chooseAvatar} items={avatars} />
+        }
+        <Cube step={currentStep}>
+          <div>
+            <TextInput
+              type="text"
+              name="username"
+              value={username.value}
+              placeholder="username"
+              onChange={this.handleChange}
+              invalid={username.invalid}
+              validateValue={this.invalidName}
+              updateInvalid={this.updateInvalid}
+            />
+            <TextInput
+              type="text"
+              name="email"
+              value={email.value}
+              placeholder="email"
+              onChange={this.handleChange}
+              invalid={email.invalid}
+              validateValue={this.invalidEmail}
+              updateInvalid={this.updateInvalid}
+            />
+            <TextInput
+              type="password"
+              name="password"
+              value={password.value}
+              placeholder="password"
+              onChange={this.handleChange}
+              invalid={password.invalid}
+              validateValue={this.invalidPassword}
+              updateInvalid={this.updateInvalid}
+            />
+            <Button
+              awaiting={awaiting}
+              error={error}
+              onClick={this.nextStep}
+              alignBottom
+            >
+              next
+            </Button>
+          </div>
+          <div>
+            <Avatar
+              imageURL={selectedAvatar}
+              alt=""
+              labelText="change avatar"
+              onClick={this.openSelectionPopup}
+            />
+            <Arrow
+              secondary
+              absoluteLeft
+              onClick={this.previousStep}
+            />
+            <Button
+              awaiting={awaiting}
+              error={error}
+              onClick={this.handleSubmit}
+              alignBottom
+            >
+              register
+            </Button>
+          </div>
+          <div />
+          <div />
+        </Cube>
       </Form>
     );
   }

@@ -13,7 +13,7 @@ class GameList extends Component {
 
   renderList() {
     const {
-      error, loading, games, onSelectGame,
+      error, loading, games,
     } = this.props;
 
     if (error) {

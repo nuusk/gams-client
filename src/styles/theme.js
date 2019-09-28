@@ -1,3 +1,9 @@
+const size = {
+  mobile: 425,
+  tablet: 1024,
+  desktop: 2560,
+};
+
 const theme = {
   color: {
     accent: {
@@ -20,7 +26,7 @@ const theme = {
         base: '#FDFFFC',
         active: '#EDDD00',
       },
-      labe: '#E9EAE8',
+      label: '#E9EAE8',
     },
     palette: { // for reference
       platinum: '#E9EAE8',
@@ -29,6 +35,8 @@ const theme = {
       titaniumYellow: '#EDDD00',
       lightSeaGreen: '#1B9AAA',
       upsdellRed: '#AA1B2E',
+      turquoiseBlue: '#00FDE9',
+      grape: '#6b34bd',
     },
   },
   font: {
@@ -85,6 +93,11 @@ const theme = {
       middle: 2000,
       back: 1000,
     },
+  },
+  devices: {
+    mobile: `(max-width: ${size.mobile}px)`,
+    tablet: `(min-width: ${size.mobile + 1}px) and (max-width: ${size.tablet}px)`,
+    desktop: `(min-width: ${size.tablet + 1}px) and (max-width: ${size.desktop}px)`,
   },
 };
 
