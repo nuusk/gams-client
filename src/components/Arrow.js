@@ -33,8 +33,11 @@ const Arrow = styled.div`
     top: 50%;
     left: -40px;
     transform: translateY(-50%) rotate(45deg);
-
     animation: wiggle ${({ theme }) => theme.visuals.transition.slow} infinite;
+
+    @media ${({ theme }) => theme.devices.mobile} {
+      transform: translate(50px, 0px) rotate(45deg);
+    }
   `}
 
   @keyframes wiggle {

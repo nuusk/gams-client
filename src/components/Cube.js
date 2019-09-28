@@ -12,20 +12,32 @@ const CubeWrapper = styled.div`
   display: flex;
   justify-content: center;
 
+  @media ${({ theme }) => theme.devices.mobile} {
+    height: 100%;
+  }
+
   // every side
   & > * {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
-    width: 400px;
-    height: 400px;
     border: 2px solid ${({ theme }) => theme.color.accent.primary};
     padding: 40px;
     box-sizing: border-box;
     text-align: center;
     opacity: 0.1;
     transition: opacity ${({ theme }) => theme.visuals.transition.base};
+    width: 400px;
+    height: 400px;
+
+    @media ${({ theme }) => theme.devices.mobile} {
+      width: 340px;
+      max-width: 95vw;
+      height: 100%;
+      justify-content: center;
+      opacity: 0;
+    }
   }
 
   // front
