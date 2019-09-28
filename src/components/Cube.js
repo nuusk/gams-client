@@ -32,6 +32,7 @@ const CubeWrapper = styled.div`
     height: 400px;
 
     @media ${({ theme }) => theme.devices.mobile} {
+      padding: 40px 10px;
       width: 340px;
       max-width: 95vw;
       height: 100%;
