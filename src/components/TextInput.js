@@ -18,7 +18,7 @@ const InputGroup = styled.div`
     height: 100%; 
     top: 0;
     right: 0;
-    transition: ${({ theme }) => theme.visuals.transition.base};
+    transition: ${({ theme }) => theme.transition.base};
     z-index: ${({ theme }) => theme.visuals.zindex.middle}
   }
 
@@ -34,7 +34,7 @@ const InputGroup = styled.div`
     border: 3px solid;
     border-left: none;
     border-top: none;
-    transition: ${({ theme }) => theme.visuals.transition.base};
+    transition: ${({ theme }) => theme.transition.base};
     z-index: ${({ theme }) => theme.visuals.zindex.front};
     opacity: 0;
   }
@@ -102,8 +102,8 @@ const InputLabel = styled.label`
   opacity: 0;
   top: 1rem;
   transition: 
-    ${({ theme }) => theme.visuals.transition.quick},
-    top ${({ theme }) => theme.visuals.transition.base};
+    ${({ theme }) => theme.transition.quick},
+    top ${({ theme }) => theme.transition.base};
 
   ${({ isActive }) => isActive && css`
     top: -1rem;
@@ -124,7 +124,7 @@ const InputElement = styled.input`
   color: inherit;
   position: relative;
   z-index: ${({ theme }) => theme.visuals.zindex.front};
-  transition: color ${({ theme }) => theme.visuals.transition.base};
+  transition: color ${({ theme }) => theme.transition.base};
   padding-right: 30px;
 
   &::placeholder {

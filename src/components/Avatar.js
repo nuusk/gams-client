@@ -16,7 +16,7 @@ const AvatarLabel = styled.div`
   left: 0;
   top: 0;
   background-color: ${({ theme }) => theme.color.accent.secondary};
-  transition: opacity ${({ theme }) => theme.visuals.transition.quick};
+  transition: opacity ${({ theme }) => theme.transition.quick};
 `;
 
 const Wrapper = styled.div`

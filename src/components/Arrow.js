@@ -11,7 +11,7 @@ const Arrow = styled.div`
   border-top: none;
   cursor: pointer;
   display: inline-block;
-  transition: ${({ theme }) => theme.visuals.transition.base};
+  transition: ${({ theme }) => theme.transition.base};
 
   ${({ secondary }) => secondary
     && css`
@@ -33,7 +33,7 @@ const Arrow = styled.div`
     top: 50%;
     left: -40px;
     transform: translateY(-50%) rotate(45deg);
-    animation: wiggle ${({ theme }) => theme.visuals.transition.slow} infinite;
+    animation: wiggle ${({ theme }) => theme.transition.slow} infinite;
 
     @media ${({ theme }) => theme.devices.mobile} {
       transform: translate(50px, 0px) rotate(45deg);

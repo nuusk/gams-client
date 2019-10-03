@@ -48,11 +48,11 @@ const Tile = styled.div`
   }
 
   display: inline-block;
-  transition: ${({ theme }) => theme.visuals.transition.quick};
+  transition: ${({ theme }) => theme.transition.quick};
   position: relative;
   cursor: pointer;
   &::after {
-    transition: ${({ theme }) => theme.visuals.transition.quick};
+    transition: ${({ theme }) => theme.transition.quick};
     content: '';
     display: block;
     height: 100%;

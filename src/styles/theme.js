@@ -75,15 +75,15 @@ const theme = {
       narrow: '1200px',
     },
   },
+  transition: {
+    quick: '0.2s cubic-bezier(.57,.17,.32,.92)',
+    base: '0.4s cubic-bezier(.49,.98,.87,.99)',
+    slow: '1s cubic-bezier(.49,.98,.87,.99)',
+  },
   visuals: {
     shadow: {
       close: '0 3px 5px 0 rgba(0, 0, 0, 0.2)',
       far: '3px 6px 15px 0 rgba(0, 0, 0, 0.1)',
-    },
-    transition: {
-      quick: '0.2s cubic-bezier(.57,.17,.32,.92)',
-      base: '0.4s cubic-bezier(.49,.98,.87,.99)',
-      slow: '1s cubic-bezier(.49,.98,.87,.99)',
     },
     perspective: {
       far: '1000px',
