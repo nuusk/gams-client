@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   position: absolute;
   z-index: ${({ theme }) => theme.visuals.zindex.front};
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding: 40px;
   box-sizing: border-box;
   top: 50%;
@@ -33,6 +33,7 @@ const Tile = styled.div`
   background-size: contain;
   background-position: bottom;
   min-width: 200px;
+  height: 100%;
 
   @media ${({ theme }) => theme.devices.desktop} {
     min-width: 180px;

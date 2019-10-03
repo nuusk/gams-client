@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import AppLogo from '../components/AppLogo';
+import AppHeader from '../components/AppHeader';
 import Screen from '../components/Screen';
 import LoginFormContainer from '../containers/LoginFormContainer';
 import CustomPropTypes from '../helpers/CustomPropTypes';
@@ -8,9 +8,7 @@ import CustomPropTypes from '../helpers/CustomPropTypes';
 export default function LoginPage({ history }) {
   return (
     <Layout columned narrow>
-      <header>
-        <AppLogo />
-      </header>
+      <AppHeader />
       <main>
         <Screen>
           <div />

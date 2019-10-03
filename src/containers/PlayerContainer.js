@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchProfile } from '../actions/profileActions';
+import GameTile from '../components/GameTile';
+import Sidebar from '../components/Sidebar';
 
 class PlayerContainer extends Component {
   componentDidMount() {
@@ -30,7 +32,12 @@ class PlayerContainer extends Component {
     }
 
     return (
-      <img src={profile.imgURL} alt="Player Avatar" />
+      <Sidebar>
+        <GameTile imageURL={profile.avatarURL} alt="Player Avatar" />
+        <strong>{profile.username}</strong>
+        
+        <strong>lvl: 44</strong>
+      </Sidebar>
     );
   }
 

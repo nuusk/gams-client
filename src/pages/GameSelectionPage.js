@@ -2,15 +2,13 @@ import React from 'react';
 import GamesContainer from '../containers/GamesContainer';
 import PlayerContainer from '../containers/PlayerContainer';
 import Layout from '../components/Layout';
-import AppLogo from '../components/AppLogo';
+import AppHeader from '../components/AppHeader';
 import Screen from '../components/Screen';
 
 export default function GameSelectionPage() {
   return (
     <Layout columned narrow>
-      <header>
-        <AppLogo />
-      </header>
+      <AppHeader />
       <Screen>
         <PlayerContainer />
         <GamesContainer />

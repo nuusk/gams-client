@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   background-size: cover;
   height: 160px;
   width: 160px;
-  border: 2px solid white;
+  border: 2px solid ${({ theme }) => theme.color.elements.label};
   padding: 20px;
   margin: 10px;
   display: inline-block;
