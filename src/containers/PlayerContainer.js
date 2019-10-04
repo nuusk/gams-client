@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from "react-router"
 import PropTypes from 'prop-types';
 import { fetchProfile } from '../actions/profileActions';
+import GameTile from '../components/GameTile';
+import Sidebar from '../components/Sidebar';
+import Avatar from '../components/Avatar';
+import StatusBar from '../components/StatusBar';
 
 class PlayerContainer extends Component {
   componentDidMount() {
@@ -19,6 +24,7 @@ class PlayerContainer extends Component {
           Error loading avatar!
           {' '}
           {error.message}
+          <Redirect to="/about" />
         </div>
       );
     }
@@ -30,7 +36,14 @@ class PlayerContainer extends Component {
     }
 
     return (
-      <img src={profile.imgURL} alt="Player Avatar" />
+      <Sidebar>
+        <Avatar
+          imageURL={profile.avatarURL}
+          alt="Player Avatar"
+          bottomLabel={profile.username}
+        />
+        <StatusBar />
+      </Sidebar>
     );
   }
 
@@ -53,13 +66,16 @@ export default connect(mapStateToProps, mapDispatchToPtops)(PlayerContainer);
 
 PlayerContainer.propTypes = {
   onFetchProfile: PropTypes.func.isRequired,
-  profile: PropTypes.string,
+  profile: PropTypes.shape({
+    username: PropTypes.string,
+    avatarURL: PropTypes.string,
+  }),
   error: PropTypes.bool,
   loading: PropTypes.bool,
 };
 
 PlayerContainer.defaultProps = {
-  profile: '',
+  profile: {},
   error: false,
   loading: false,
 };

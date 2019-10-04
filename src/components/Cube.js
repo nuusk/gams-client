@@ -8,7 +8,7 @@ const CubeWrapper = styled.div`
   position: relative;
   transform-style: preserve-3d;
   transform: translateZ(-200px);
-  transition: transform ${({ theme }) => theme.visuals.transition.slow};
+  transition: transform ${({ theme }) => theme.transition.slow};
   display: flex;
   justify-content: center;
 
@@ -27,7 +27,7 @@ const CubeWrapper = styled.div`
     box-sizing: border-box;
     text-align: center;
     opacity: 0.1;
-    transition: opacity ${({ theme }) => theme.visuals.transition.base};
+    transition: opacity ${({ theme }) => theme.transition.base};
     width: 400px;
     height: 400px;
 

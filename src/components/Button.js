@@ -17,10 +17,10 @@ const Wrapper = styled.button`
   outline: none;
   transform-origin: bottom;
   -webkit-transform-style: preserve-3d;
-  transition: transform ${({ theme }) => theme.visuals.transition.base};
+  transition: transform ${({ theme }) => theme.transition.base};
 
   &::after {
-    transition: ${({ theme }) => theme.visuals.transition.quick};
+    transition: ${({ theme }) => theme.transition.quick};
     content: '';
     display: block;
     position: absolute;
@@ -77,14 +77,14 @@ const Wrapper = styled.button`
       content: '';
       display: block;
       position: absolute;
-      transition: ${({ theme }) => theme.visuals.transition.quick};
+      transition: ${({ theme }) => theme.transition.quick};
       transform: translateY(-50%) skew(-10deg, 10deg);
       background-color: ${({ theme }) => theme.color.accent.secondary};
       top: 50%;
       width: 20px;
       height: 200%;
       left: 0;
-      animation: awaiting ${({ theme }) => theme.visuals.transition.slow} infinite;
+      animation: awaiting ${({ theme }) => theme.transition.slow} infinite;
     }
   `}
 
@@ -111,7 +111,7 @@ const Wrapper = styled.button`
 const ButtonText = styled.div`
   position: absolute;
   z-index: ${({ theme }) => theme.visuals.zindex.front};
-  transition: ${({ theme }) => theme.visuals.transition.quick};
+  transition: ${({ theme }) => theme.transition.quick};
 
   ${({ awaiting }) => awaiting
     && css`

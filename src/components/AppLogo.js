@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const LogoImage = styled.img`
   display: block;
-  max-width: 140px;
-  max-height: 140px;
+  max-width: 100px;
   width: auto;
   height: auto;
+  object-fit: contain;
 `;
 
 const AppLogo = () => (
