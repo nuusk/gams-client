@@ -7,6 +7,8 @@ const CustomNavLink = ({ ...rest }) => (
     {...rest}
     bgColor={theme.color.palette.eerieBlack}
     style={{ height: 30, width: 30 }}
+    target="_blank"
+    rel="noopener noreferrer"
   />
 );
 
