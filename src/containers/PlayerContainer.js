@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from "react-router"
 import PropTypes from 'prop-types';
 import { fetchProfile } from '../actions/profileActions';
 import GameTile from '../components/GameTile';
@@ -23,6 +24,7 @@ class PlayerContainer extends Component {
           Error loading avatar!
           {' '}
           {error.message}
+          <Redirect to="/about" />
         </div>
       );
     }
