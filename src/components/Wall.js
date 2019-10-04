@@ -20,6 +20,11 @@ const Wrapper = styled.div`
   p {
     text-align: center;
   }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 `;
 
 const Wall = ({ children, ...rest }) => (
