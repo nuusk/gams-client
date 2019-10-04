@@ -23,7 +23,7 @@ export default function GameSelectionPage() {
           <span>
             or
           </span>
-          <a href="mailto:milosz.pogodski@student.put.poznan.pl">milosz.pogodski@student.put.poznan.pl</a>
+          <a href="mailto:pogodskim@gmail.com">pogodskim@gmail.com</a>
         </Wall>
         <div />
       </Screen>
