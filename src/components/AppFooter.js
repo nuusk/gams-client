@@ -43,6 +43,7 @@ const AppFooter = ({ ...rest }) => (
     <LinkWrapper left>
       <CustomNavLink exact to="/about">about</CustomNavLink>
       <CustomNavLink exact to="/contact">contact us</CustomNavLink>
+      <div><a href="https://www.rumour.netlify.com" target="_blank" rel="noopener noreferrer">rumour</a></div>
     </LinkWrapper>
     <LinkWrapper center>
       <span>&copy; 2019 PUT</span>
