@@ -37,6 +37,7 @@ const theme = {
       upsdellRed: '#AA1B2E',
       turquoiseBlue: '#00FDE9',
       grape: '#6b34bd',
+      kiwi: '#5DDB41',
     },
   },
   font: {

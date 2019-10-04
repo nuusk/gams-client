@@ -33,7 +33,7 @@ const BottomLabel = styled.div`
   height: 20px;
   bottom: -40px;
   width: 186px;
-  margin: -10px auto 20px;
+  margin: -10px auto 10px;
   padding: 4px 0;
   border: 2px solid ${({ theme }) => theme.color.elements.label};
   border-top: none;

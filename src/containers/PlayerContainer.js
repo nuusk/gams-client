@@ -5,6 +5,7 @@ import { fetchProfile } from '../actions/profileActions';
 import GameTile from '../components/GameTile';
 import Sidebar from '../components/Sidebar';
 import Avatar from '../components/Avatar';
+import StatusBar from '../components/StatusBar';
 
 class PlayerContainer extends Component {
   componentDidMount() {
@@ -39,6 +40,7 @@ class PlayerContainer extends Component {
           alt="Player Avatar"
           bottomLabel={profile.username}
         />
+        <StatusBar />
         <strong>{profile.username}</strong>
 
         <strong>lvl: 44</strong>
