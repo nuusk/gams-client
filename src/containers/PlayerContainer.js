@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from "react-router"
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import { fetchProfile } from '../actions/profileActions';
-import GameTile from '../components/GameTile';
 import Sidebar from '../components/Sidebar';
 import Avatar from '../components/Avatar';
 import StatusBar from '../components/StatusBar';
