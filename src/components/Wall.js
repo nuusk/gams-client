@@ -5,10 +5,21 @@ import PropTypes from 'prop-types';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 0 80px;
 
+  span {
+    margin: .4rem 0;
+  }
+
+  a {
+    color: ${({ theme }) => theme.color.accent.secondary};
+  }
+
+  p {
+    text-align: center;
+  }
 `;
 
 const Wall = ({ children, ...rest }) => (

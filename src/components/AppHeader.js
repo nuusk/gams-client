@@ -42,7 +42,6 @@ const AppHeader = ({ ...rest }) => (
   <Wrapper {...rest}>
     <LinkWrapper left>
       <CustomNavLink exact to="/">home</CustomNavLink>
-      <CustomNavLink exact to="/about">about</CustomNavLink>
     </LinkWrapper>
     <Link to="/">
       <AppLogo />

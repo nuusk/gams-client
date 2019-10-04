@@ -14,15 +14,20 @@ export default function GameSelectionPage() {
         <div />
         <Wall>
           <h1>
-            It's just a hub for games.
+            Want to get in touch?
           </h1>
-          <p>
-            Here you can find many multiplayer games for you to play with your friends. If you have them, that is.
-          </p>
+          <span>
+            Let us know at
+          </span>
+          <a href="mailto:piotr@ptak.dev">piotr@ptak.dev</a>
+          <span>
+            or
+          </span>
+          <a href="mailto:milosz.pogodski@student.put.poznan.pl">milosz.pogodski@student.put.poznan.pl</a>
         </Wall>
         <div />
       </Screen>
       <AppFooter />
-    </Layout>
+    </Layout >
   );
 }

@@ -30,7 +30,7 @@ const theme = {
     },
     palette: { // for reference
       platinum: '#E9EAE8',
-      eerieBlack: '#191716',
+      eerieBlack: '#292726',
       richBlack: '#050505',
       titaniumYellow: '#EDDD00',
       lightSeaGreen: '#1B9AAA',
