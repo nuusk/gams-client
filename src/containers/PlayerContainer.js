@@ -41,9 +41,6 @@ class PlayerContainer extends Component {
           bottomLabel={profile.username}
         />
         <StatusBar />
-        <strong>{profile.username}</strong>
-
-        <strong>lvl: 44</strong>
       </Sidebar>
     );
   }
