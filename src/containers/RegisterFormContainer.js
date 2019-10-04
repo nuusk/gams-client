@@ -227,7 +227,7 @@ class RegisterFormContainer extends Component {
                   <Avatar
                     imageURL={selectedAvatar}
                     alt=""
-                    labelText="change avatar"
+                    topLabel="change avatar"
                     onClick={this.openSelectionPopup}
                   />
                   <Arrow

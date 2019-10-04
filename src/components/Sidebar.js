@@ -7,7 +7,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 2px solid ${({ theme }) => theme.color.elements.line};
+  // background-color: ${({ theme }) => theme.color.background.base};
+  // border: 2px solid ${({ theme }) => theme.color.elements.line};
+
 `;
 
 const Sidebar = ({ children, ...rest }) => (
