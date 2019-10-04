@@ -1,4 +1,4 @@
-const WHITE_LIST = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-';
+const WHITE_LIST = '0123456789qwertyuioópaąsśdfghjklzżźxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-';
 const ERROR_MESSAGE = 'use only numbers, letters and "-", "_"';
 
 export default function (e) {
