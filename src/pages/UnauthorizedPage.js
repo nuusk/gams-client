@@ -1,12 +1,12 @@
 import React from 'react';
-import PlayerContainer from '../containers/PlayerContainer';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import AppHeader from '../components/AppHeader';
 import AppFooter from '../components/AppFooter';
 import Screen from '../components/Screen';
 import Wall from '../components/Wall';
 
-export default function GameSelectionPage() {
+export default function UnauthorizedPage() {
   return (
     <Layout columned narrow>
       <AppHeader />
@@ -14,16 +14,13 @@ export default function GameSelectionPage() {
         <div />
         <Wall>
           <h1>
-            Want to get in touch?
+            Who goes there?
           </h1>
-          <span>
-            Let us know at
-          </span>
-          <a href="mailto:piotr@ptak.dev">piotr@ptak.dev</a>
-          <span>
-            or
-          </span>
-          <a href="mailto:pogodskim@gmail.com">pogodskim@gmail.com</a>
+          <p>
+            To go further, you need to <Link to="/login">log in.</Link>
+            <br />
+            If you don't have an account, <Link to="/register">make one.</Link>
+          </p>
         </Wall>
         <div />
       </Screen>

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import AppLogo from './AppLogo';
 import CustomNavLink from './CustomNavLink';
+import { isLoggedIn } from '../helpers/auth';
 
 const Wrapper = styled.header`
   display: flex;
@@ -49,6 +50,7 @@ const AppHeader = ({ ...rest }) => (
     <LinkWrapper right>
       <CustomNavLink exact to="/login">login</CustomNavLink>
       <CustomNavLink exact to="/register">register</CustomNavLink>
+      {isLoggedIn() && <CustomNavLink exact to="/logout">logout</CustomNavLink>}
     </LinkWrapper>
   </Wrapper>
 );
