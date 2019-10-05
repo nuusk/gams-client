@@ -1,4 +1,4 @@
-import { TOKEN_COOKIE, getCookie } from '../helpers/cookies';
+import { getUserToken } from './auth';
 
 const isJson = (data) => {
   const contentType = data.headers.get('content-type');
@@ -32,7 +32,7 @@ export const request = (...args) => fetch(buildRequest(...args))
 
 export const jwtRequest = (...args) => {
   const headers = args.headers || {};
-  const tokenCookie = getCookie(TOKEN_COOKIE);
+  const tokenCookie = getUserToken();
   if (tokenCookie) {
     headers.Authorization = `Bearer ${tokenCookie}`;
   }

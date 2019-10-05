@@ -1,5 +1,6 @@
 import { TOKEN_COOKIE, getCookie } from './cookies';
 
-const isLoggedIn = () => getCookie(TOKEN_COOKIE) && 1;
+export const isLoggedIn = () => getCookie(TOKEN_COOKIE) && 1;
 
-export default isLoggedIn;
+export const getUserToken = () => getCookie(TOKEN_COOKIE);
+
