@@ -8,15 +8,14 @@ import AppHeader from '../components/AppHeader';
 import AppFooter from '../components/AppFooter';
 import Screen from '../components/Screen';
 import Wall from '../components/Wall';
-
-const ONE_SECOND = 1000;
+import { seconds } from '../helpers/time';
 
 class LogoutPage extends Component {
   constructor() {
     super();
 
     this.state = {
-      redirectTimer: 3 * ONE_SECOND,
+      redirectTimer: seconds(3),
     };
 
     this.tick = this.tick.bind(this);
@@ -28,7 +27,7 @@ class LogoutPage extends Component {
 
     this.tickInterval = setInterval(() => {
       this.tick();
-    }, ONE_SECOND);
+    }, seconds(1));
   }
 
   tick() {
@@ -36,9 +35,9 @@ class LogoutPage extends Component {
     const { history } = this.props;
 
     this.setState({
-      redirectTimer: redirectTimer - ONE_SECOND,
+      redirectTimer: redirectTimer - seconds(1),
     }, () => {
-      if (redirectTimer <= ONE_SECOND) {
+      if (redirectTimer <= seconds(1)) {
         history.replace('/');
         clearInterval(this.tickInterval);
       }
