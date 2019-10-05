@@ -28,6 +28,6 @@ export default function GameSelectionPage() {
         <div />
       </Screen>
       <AppFooter />
-    </Layout >
+    </Layout>
   );
 }

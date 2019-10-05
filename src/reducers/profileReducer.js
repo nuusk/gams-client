@@ -3,6 +3,7 @@ import {
   FETCH_PROFILE_SUCCESS,
   FETCH_PROFILE_FAILURE,
   PROFILE_REGISTER,
+  PROFILE_LOGOUT,
 } from '../actions/profileActions';
 
 const initialProfile = {
@@ -23,6 +24,8 @@ export const profileLogin = (state = initialLogin, action) => {
         username: action.payload.username,
         email: action.payload.email,
       };
+    case PROFILE_LOGOUT:
+      return {};
     default:
       return state;
   }

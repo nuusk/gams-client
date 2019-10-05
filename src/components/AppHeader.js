@@ -49,6 +49,7 @@ const AppHeader = ({ ...rest }) => (
     <LinkWrapper right>
       <CustomNavLink exact to="/login">login</CustomNavLink>
       <CustomNavLink exact to="/register">register</CustomNavLink>
+      <CustomNavLink exact to="/logout">logout</CustomNavLink>
     </LinkWrapper>
   </Wrapper>
 );
