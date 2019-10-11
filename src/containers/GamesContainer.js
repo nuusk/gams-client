@@ -13,7 +13,7 @@ class GameList extends Component {
 
   renderList() {
     const {
-      error, loading, games,
+      error, loading, games, onSelectGame,
     } = this.props;
 
     if (error) {
@@ -44,7 +44,7 @@ class GameList extends Component {
               key={game._id}
               // eslint-disable-next-line no-underscore-dangle
               gameID={game._id}
-              // handleClick={onSelectGame}
+              handleClick={onSelectGame}
               title={game.title}
               imageURL={game.imageURL}
               gameURL={game.gameURL}
@@ -67,7 +67,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSelectGame: challengeID => dispatch(selectGame(challengeID)),
+  onSelectGame: gameID => dispatch(selectGame(gameID)),
   onFetchGames: () => dispatch(fetchGames()),
 });
 

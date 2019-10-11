@@ -60,7 +60,7 @@ class LoginFormContainer extends Component {
       awaiting: true,
     });
 
-    const loginResponse = await request('/profiles/login', {
+    const loginResponse = await request('/tokens', {
       method: 'POST',
       body: {
         email: email.value,

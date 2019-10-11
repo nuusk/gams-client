@@ -8,7 +8,6 @@ const Tile = styled.div`
   height: 120px;
   width: 120px;
   border: 2px solid ${({ theme }) => theme.color.elements.label};
-
 `;
 
 const TopLabel = styled.div`
@@ -19,31 +18,41 @@ const TopLabel = styled.div`
   padding: 2px;
   background-color: ${({ theme }) => theme.color.accent.primary};
   font-size: ${({ theme }) => theme.font.size.label.secondary};
+  transition: ${({ theme }) => theme.transition.quick};
 `;
 
 const Wrapper = styled.div`
   margin: 10px;
   display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    ${TopLabel} {
+      background-color: ${({ theme }) => theme.color.accent.secondary};
+    }
+  }
 `;
 
 const GameTile = ({
-  gameID, title, imageURL, gameURL, ...rest
+  handleClick, gameID, title, imageURL, gameURL, ...rest
 }) => (
-    <Wrapper>
-      <TopLabel>{title}</TopLabel>
-      <Tile imageURL={imageURL} {...rest} />
-    </Wrapper>
-  );
+  <Wrapper onClick={handleClick}>
+    <TopLabel>{title}</TopLabel>
+    <Tile imageURL={imageURL} {...rest} />
+  </Wrapper>
+);
 
 GameTile.propTypes = {
   gameID: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   imageURL: PropTypes.string,
   gameURL: PropTypes.string.isRequired,
+  handleClick: PropTypes.func,
 };
 
 GameTile.defaultProps = {
   imageURL: '',
+  handleClick: () => false,
 };
 
 export default GameTile;
