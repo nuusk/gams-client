@@ -14,6 +14,7 @@ import RegisterPage from './pages/RegisterPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import LogoutPage from './pages/LogoutPage';
+import EditProfilePage from './pages/EditProfilePage';
 import UnauthorizedPage from './pages/UnauthorizedPage';
 
 render(
@@ -24,6 +25,7 @@ render(
           <Switch>
             <PrivateRoute exact path="/" component={GameSelectionPage} />
             <Route exact path="/login" component={LoginPage} />
+            <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/logout" component={LogoutPage} />
             <Route exact path="/about" component={AboutPage} />
