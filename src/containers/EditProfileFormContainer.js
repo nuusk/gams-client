@@ -67,7 +67,7 @@ class EditProfileFormContainer extends Component {
     const editProfileResponse = await request('/profiles', {
       method: 'PATCH',
       body: {
-        username: name.value,
+        username: username.value,
         email: email.value,
         password: password.value,
       },
@@ -85,7 +85,7 @@ class EditProfileFormContainer extends Component {
 
   render() {
     const {
-      name,
+      username,
       email,
       password,
       awaiting,
