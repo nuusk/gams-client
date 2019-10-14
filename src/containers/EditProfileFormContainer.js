@@ -9,7 +9,7 @@ import mapEventToState from '../helpers/mapEventToState';
 import invalidName from '../helpers/invalidName';
 import invalidEmail from '../helpers/invalidEmail';
 import invalidPassword from '../helpers/invalidPassword';
-import { request } from '../helpers/request';
+import { jwtRequest } from '../helpers/request';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
 
@@ -64,7 +64,7 @@ class EditProfileFormContainer extends Component {
       awaiting: true,
     });
 
-    const editProfileResponse = await request('/profiles', {
+    const editProfileResponse = await jwtRequest('/profiles', {
       method: 'PATCH',
       body: {
         username: username.value,
