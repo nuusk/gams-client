@@ -78,7 +78,7 @@ class EditProfileFormContainer extends Component {
     });
 
     if (editProfileResponse.status === 200 || editProfileResponse.status === 204) {
-      onEditProfile(loginResponse.username, loginResponse.email);
+      onEditProfile(editProfileResponse.username, editProfileResponse.email);
       history.push('/');
     }
   }
